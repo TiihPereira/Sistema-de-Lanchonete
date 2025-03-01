@@ -40,7 +40,6 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.btnsalvar = new System.Windows.Forms.Button();
 			this.txtcod = new System.Windows.Forms.TextBox();
-			this.btnnovo = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.tabelaIngredientes = new System.Windows.Forms.DataGridView();
@@ -61,7 +60,7 @@
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(800, 100);
+			this.panel1.Size = new System.Drawing.Size(811, 100);
 			this.panel1.TabIndex = 0;
 			// 
 			// label1
@@ -96,7 +95,6 @@
 			this.tabPage1.Controls.Add(this.label3);
 			this.tabPage1.Controls.Add(this.btnsalvar);
 			this.tabPage1.Controls.Add(this.txtcod);
-			this.tabPage1.Controls.Add(this.btnnovo);
 			this.tabPage1.Controls.Add(this.label2);
 			this.tabPage1.Location = new System.Drawing.Point(4, 26);
 			this.tabPage1.Name = "tabPage1";
@@ -110,7 +108,7 @@
 			// 
 			this.btneditar.BackColor = System.Drawing.SystemColors.MenuHighlight;
 			this.btneditar.ForeColor = System.Drawing.Color.White;
-			this.btneditar.Location = new System.Drawing.Point(552, 223);
+			this.btneditar.Location = new System.Drawing.Point(259, 203);
 			this.btneditar.Name = "btneditar";
 			this.btneditar.Size = new System.Drawing.Size(120, 44);
 			this.btneditar.TabIndex = 9;
@@ -140,7 +138,7 @@
 			// 
 			this.btnexcluir.BackColor = System.Drawing.SystemColors.MenuHighlight;
 			this.btnexcluir.ForeColor = System.Drawing.Color.White;
-			this.btnexcluir.Location = new System.Drawing.Point(393, 223);
+			this.btnexcluir.Location = new System.Drawing.Point(440, 203);
 			this.btnexcluir.Name = "btnexcluir";
 			this.btnexcluir.Size = new System.Drawing.Size(120, 44);
 			this.btnexcluir.TabIndex = 8;
@@ -170,7 +168,7 @@
 			// 
 			this.btnsalvar.BackColor = System.Drawing.SystemColors.MenuHighlight;
 			this.btnsalvar.ForeColor = System.Drawing.Color.White;
-			this.btnsalvar.Location = new System.Drawing.Point(234, 223);
+			this.btnsalvar.Location = new System.Drawing.Point(74, 203);
 			this.btnsalvar.Name = "btnsalvar";
 			this.btnsalvar.Size = new System.Drawing.Size(120, 44);
 			this.btnsalvar.TabIndex = 7;
@@ -184,17 +182,6 @@
 			this.txtcod.Name = "txtcod";
 			this.txtcod.Size = new System.Drawing.Size(260, 23);
 			this.txtcod.TabIndex = 0;
-			// 
-			// btnnovo
-			// 
-			this.btnnovo.BackColor = System.Drawing.SystemColors.MenuHighlight;
-			this.btnnovo.ForeColor = System.Drawing.Color.White;
-			this.btnnovo.Location = new System.Drawing.Point(74, 223);
-			this.btnnovo.Name = "btnnovo";
-			this.btnnovo.Size = new System.Drawing.Size(120, 44);
-			this.btnnovo.TabIndex = 6;
-			this.btnnovo.Text = "Novo";
-			this.btnnovo.UseVisualStyleBackColor = false;
 			// 
 			// label2
 			// 
@@ -235,12 +222,13 @@
 			// 
 			this.btnpesquisar.BackColor = System.Drawing.SystemColors.MenuHighlight;
 			this.btnpesquisar.ForeColor = System.Drawing.Color.White;
-			this.btnpesquisar.Location = new System.Drawing.Point(75, 154);
+			this.btnpesquisar.Location = new System.Drawing.Point(96, 140);
 			this.btnpesquisar.Name = "btnpesquisar";
 			this.btnpesquisar.Size = new System.Drawing.Size(138, 48);
 			this.btnpesquisar.TabIndex = 7;
 			this.btnpesquisar.Text = "Pesquisar";
 			this.btnpesquisar.UseVisualStyleBackColor = false;
+			this.btnpesquisar.Click += new System.EventHandler(this.btnpesquisar_Click);
 			// 
 			// txtpesquisa
 			// 
@@ -248,6 +236,7 @@
 			this.txtpesquisa.Name = "txtpesquisa";
 			this.txtpesquisa.Size = new System.Drawing.Size(197, 23);
 			this.txtpesquisa.TabIndex = 5;
+			this.txtpesquisa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpesquisa_KeyPress);
 			// 
 			// label5
 			// 
@@ -264,7 +253,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(811, 458);
 			this.Controls.Add(this.tabIngredientes);
 			this.Controls.Add(this.panel1);
 			this.Name = "FrmIngredientes";
@@ -299,7 +288,6 @@
 		private System.Windows.Forms.Button btneditar;
 		private System.Windows.Forms.Button btnexcluir;
 		private System.Windows.Forms.Button btnsalvar;
-		private System.Windows.Forms.Button btnnovo;
 		private System.Windows.Forms.DataGridView tabelaIngredientes;
 		private System.Windows.Forms.Button btnpesquisar;
 		private System.Windows.Forms.TextBox txtpesquisa;

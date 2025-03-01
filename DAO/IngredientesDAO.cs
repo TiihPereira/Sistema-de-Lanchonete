@@ -22,15 +22,15 @@ namespace Sistema_de_Lanchonete.DAO
 
 		#region CadastrarIngrediente
 		public void cadastrarIngredientes(Ingredientes ingredientes)
-        {
+		{
 			try
 			{
 				string sql = @"INSERT INTO TB_INGREDIENTES(NOME, PRECO)
 								VALUES(@NOME, @PRECO)";
 
-				MySqlCommand executacmd = new MySqlCommand(sql,conexao);
+				MySqlCommand executacmd = new MySqlCommand(sql, conexao);
 				executacmd.Parameters.AddWithValue("@NOME", ingredientes.Nome);
-                executacmd.Parameters.AddWithValue("@PRECO", ingredientes.Preco);
+				executacmd.Parameters.AddWithValue("@PRECO", ingredientes.Preco);
 
 				conexao.Open();
 				executacmd.ExecuteNonQuery();
@@ -41,9 +41,9 @@ namespace Sistema_de_Lanchonete.DAO
 			catch (Exception error)
 			{
 
-                MessageBox.Show("Erro ao tentar cadastrar: " + error);
-            }
-        }
+				MessageBox.Show("Erro ao tentar cadastrar: " + error);
+			}
+		}
 		#endregion
 
 		#region AlterarIngredientes
@@ -134,5 +134,67 @@ namespace Sistema_de_Lanchonete.DAO
 
 		#endregion
 
+		#region BuscarIngredientePorNome
+
+		public DataTable BuscarIngredientePorNome(string nome)
+		{
+			try
+			{
+				DataTable tabelaingrediente = new DataTable();
+				string sql = "SELECT * FROM TB_INGREDIENTES WHERE NOME = @NOME";
+
+				MySqlCommand executacmd = new MySqlCommand(sql, conexao);
+				executacmd.Parameters.AddWithValue("@nome", nome);
+
+				conexao.Open();
+				executacmd.ExecuteNonQuery();
+
+				MySqlDataAdapter da = new MySqlDataAdapter(executacmd);
+				da.Fill(tabelaingrediente);
+
+				conexao.Close();
+				return tabelaingrediente;
+
+			}
+			catch (Exception erro)
+			{
+
+				MessageBox.Show("Erro ao executar o comando sql: " + erro);
+				return null;
+			}
+		}
+
+		#endregion
+
+		#region ListarIngredientePorNome
+		public DataTable ListarIngredientePorNome(string nome)
+		{
+			try
+			{
+				DataTable tabelaingrediente = new DataTable();
+				string sql = "SELECT * FROM TB_INGREDIENTES WHERE NOME LIKE @NOME";
+
+				MySqlCommand executacmd = new MySqlCommand(sql, conexao);
+				executacmd.Parameters.AddWithValue("@nome", nome);
+
+				conexao.Open();
+				executacmd.ExecuteNonQuery();
+
+				MySqlDataAdapter da = new MySqlDataAdapter(executacmd);
+				da.Fill(tabelaingrediente);
+
+				conexao.Close();
+				return tabelaingrediente;
+
+			}
+			catch (Exception erro)
+			{
+
+				MessageBox.Show("Erro ao executar o comando sql: " + erro);
+				return null;
+			}
+
+			#endregion
+		}
 	}
 }

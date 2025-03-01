@@ -98,14 +98,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BO\IngredientesBO.cs" />
     <Compile Include="DAO\IngredientesDAO.cs" />
     <Compile Include="DBC\ConnectionFactory.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Model\Helpers.cs" />
     <Compile Include="Model\Ingredientes.cs" />
     <Compile Include="Model\Lanches.cs" />
     <Compile Include="Program.cs" />
@@ -115,6 +111,12 @@
     </Compile>
     <Compile Include="View\FrmIngredientes.Designer.cs">
       <DependentUpon>FrmIngredientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmLanches.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmLanches.Designer.cs">
+      <DependentUpon>FrmLanches.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -127,6 +129,9 @@
     </Compile>
     <EmbeddedResource Include="View\FrmIngredientes.resx">
       <DependentUpon>FrmIngredientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmLanches.resx">
+      <DependentUpon>FrmLanches.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Sistema_de_Lanchonete
+namespace Sistema_de_Lanchonete.View
 {
-	public partial class Form1 : Form
+	public partial class FrmLanches : Form
 	{
-		public Form1()
+		public FrmLanches()
 		{
 			InitializeComponent();
+		}
+
+		private void btnsalvar_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

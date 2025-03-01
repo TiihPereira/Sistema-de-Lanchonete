@@ -1,4 +1,5 @@
-﻿using Sistema_de_Lanchonete.DAO;
+﻿using Sistema_de_Lanchonete.BO;
+using Sistema_de_Lanchonete.DAO;
 using Sistema_de_Lanchonete.Model;
 using System;
 using System.Collections.Generic;
@@ -25,17 +26,19 @@ namespace Sistema_de_Lanchonete.View
 			ingredientes.Nome = txtnome.Text;
 			ingredientes.Preco = double.Parse(txtpreco.Text);
 
-			IngredientesDAO dao = new IngredientesDAO();
-			dao.cadastrarIngredientes(ingredientes);
+			IngredientesBO ingredientesBO = new IngredientesBO();
+			ingredientesBO.cadastrarIngredientes(ingredientes);
 
-			tabelaIngredientes.DataSource = dao.listarIngredientes();
+			tabelaIngredientes.DataSource = ingredientesBO.listarIngredientes();
+
+			new Helpers().LimparTela(this);
 		}
 
 		private void FrmIngredientes_Load(object sender, EventArgs e)
 		{
-			IngredientesDAO dao = new IngredientesDAO();
+			IngredientesBO ingredientesBO = new IngredientesBO();
 
-			tabelaIngredientes.DataSource = dao.listarIngredientes();
+			tabelaIngredientes.DataSource = ingredientesBO.listarIngredientes();
 		}
 
 		private void tabelaIngredientes_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -53,11 +56,13 @@ namespace Sistema_de_Lanchonete.View
 
 			ingredientes.Id = int.Parse(txtcod.Text);
 
-			IngredientesDAO dao = new IngredientesDAO();
+			IngredientesBO ingredientesBO = new IngredientesBO();
 
-			dao.excluirIngredientes(ingredientes);
+			ingredientesBO.excluirIngredientes(ingredientes);
 
-			tabelaIngredientes.DataSource = dao.listarIngredientes();
+			tabelaIngredientes.DataSource = ingredientesBO.listarIngredientes();
+
+			new Helpers().LimparTela(this);
 		}
 
 		private void btneditar_Click(object sender, EventArgs e)
@@ -67,10 +72,37 @@ namespace Sistema_de_Lanchonete.View
 			ingredientes.Preco = double.Parse(txtpreco.Text);
 			ingredientes.Id = int.Parse(txtcod.Text);
 
-			IngredientesDAO dao = new IngredientesDAO();
-			dao.alterarIngredientes(ingredientes);
+			IngredientesBO ingredientesBO = new IngredientesBO();
+			ingredientesBO.alterarIngredientes(ingredientes);
 
-			tabelaIngredientes.DataSource = dao.listarIngredientes();
+			tabelaIngredientes.DataSource = ingredientesBO.listarIngredientes();
+
+			new Helpers().LimparTela(this);
+		}
+
+		private void btnpesquisar_Click(object sender, EventArgs e)
+		{
+			string nome = txtpesquisa.Text;
+
+			IngredientesBO ingredientesBO = new IngredientesBO();
+
+			tabelaIngredientes.DataSource = ingredientesBO.buscarIngredientePorNome(nome);
+
+			if(tabelaIngredientes.Rows.Count == 0)
+			{
+				tabelaIngredientes.DataSource = ingredientesBO.listarIngredientes();
+			}
+
+		}
+
+		private void txtpesquisa_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			string nome = "%" + txtpesquisa.Text + "%";
+
+			IngredientesBO ingredientesBO = new IngredientesBO();
+
+			tabelaIngredientes.DataSource = ingredientesBO.listarIngredientePorNome(nome);
+
 		}
 	}
 }

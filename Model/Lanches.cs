@@ -8,9 +8,10 @@ namespace Sistema_de_Lanchonete.Model
 {
 	public class Lanches
 	{
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public double Preco { get; set; }
-        public int idIngrediente { get; set; }
-    }
+		public int Id { get; set; }
+		public string Nome { get; set; }
+		public double Preco { get; set; }
+		public List<Ingredientes> Ingredientes { get; set; }
+		public bool Ativo { get; set; }
+	}
 }
