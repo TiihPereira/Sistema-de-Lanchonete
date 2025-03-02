@@ -23,13 +23,17 @@ namespace Sistema_de_Lanchonete.View
 		private void btnsalvar_Click(object sender, EventArgs e)
 		{
 			Ingredientes ingredientes = new Ingredientes();
+
+			if (!ChecandoCampos())
+				return;
+
 			ingredientes.Nome = txtnome.Text;
 			ingredientes.Preco = double.Parse(txtpreco.Text);
 
 			IngredientesBO ingredientesBO = new IngredientesBO();
 			ingredientesBO.cadastrarIngredientes(ingredientes);
 
-			tabelaIngredientes.DataSource = ingredientesBO.listarIngredientes();
+			DataGridIngredientes.DataSource = ingredientesBO.listarIngredientes();
 
 			new Helpers().LimparTela(this);
 		}
@@ -38,14 +42,14 @@ namespace Sistema_de_Lanchonete.View
 		{
 			IngredientesBO ingredientesBO = new IngredientesBO();
 
-			tabelaIngredientes.DataSource = ingredientesBO.listarIngredientes();
+			DataGridIngredientes.DataSource = ingredientesBO.listarIngredientes();
 		}
 
 		private void tabelaIngredientes_CellClick(object sender, DataGridViewCellEventArgs e)
 		{
-			txtcod.Text = tabelaIngredientes.CurrentRow.Cells[0].Value.ToString();
-			txtnome.Text = tabelaIngredientes.CurrentRow.Cells[1].Value.ToString();
-			txtpreco.Text = tabelaIngredientes.CurrentRow.Cells[2].Value.ToString();
+			txtcod.Text = DataGridIngredientes.CurrentRow.Cells[0].Value.ToString();
+			txtnome.Text = DataGridIngredientes.CurrentRow.Cells[1].Value.ToString();
+			txtpreco.Text = DataGridIngredientes.CurrentRow.Cells[2].Value.ToString();
 
 			tabIngredientes.SelectedTab = tabPage1;
 		}
@@ -60,7 +64,7 @@ namespace Sistema_de_Lanchonete.View
 
 			ingredientesBO.excluirIngredientes(ingredientes);
 
-			tabelaIngredientes.DataSource = ingredientesBO.listarIngredientes();
+			DataGridIngredientes.DataSource = ingredientesBO.listarIngredientes();
 
 			new Helpers().LimparTela(this);
 		}
@@ -68,6 +72,10 @@ namespace Sistema_de_Lanchonete.View
 		private void btneditar_Click(object sender, EventArgs e)
 		{
 			Ingredientes ingredientes = new Ingredientes();
+
+			if (!ChecandoCampos())
+				return;
+
 			ingredientes.Nome = txtnome.Text;
 			ingredientes.Preco = double.Parse(txtpreco.Text);
 			ingredientes.Id = int.Parse(txtcod.Text);
@@ -75,7 +83,7 @@ namespace Sistema_de_Lanchonete.View
 			IngredientesBO ingredientesBO = new IngredientesBO();
 			ingredientesBO.alterarIngredientes(ingredientes);
 
-			tabelaIngredientes.DataSource = ingredientesBO.listarIngredientes();
+			DataGridIngredientes.DataSource = ingredientesBO.listarIngredientes();
 
 			new Helpers().LimparTela(this);
 		}
@@ -86,23 +94,43 @@ namespace Sistema_de_Lanchonete.View
 
 			IngredientesBO ingredientesBO = new IngredientesBO();
 
-			tabelaIngredientes.DataSource = ingredientesBO.buscarIngredientePorNome(nome);
+			DataGridIngredientes.DataSource = ingredientesBO.buscarIngredientePorNome(nome);
 
-			if(tabelaIngredientes.Rows.Count == 0)
+			if(DataGridIngredientes.Rows.Count == 0)
 			{
-				tabelaIngredientes.DataSource = ingredientesBO.listarIngredientes();
+				DataGridIngredientes.DataSource = ingredientesBO.listarIngredientes();
 			}
 
 		}
 
 		private void txtpesquisa_KeyPress(object sender, KeyPressEventArgs e)
 		{
-			string nome = "%" + txtpesquisa.Text + "%";
 
 			IngredientesBO ingredientesBO = new IngredientesBO();
 
-			tabelaIngredientes.DataSource = ingredientesBO.listarIngredientePorNome(nome);
+			DataGridIngredientes.DataSource = ingredientesBO.listarIngredientePorNome(txtpesquisa.Text);
 
+		}
+
+		private bool ChecandoCampos()
+		{
+			if (string.IsNullOrEmpty(txtnome.Text))
+			{
+				MessageBox.Show("O campo nome é obrigatório");
+				return false;
+			}
+			if (string.IsNullOrEmpty(txtpreco.Text))
+			{
+				MessageBox.Show("O campo preço é obrigatório");
+				return false;
+			}
+			if (!double.TryParse(txtpreco.Text, out _))
+			{
+				MessageBox.Show("O campo preço precisa ser numérico");
+				return false;
+			}
+
+			return true;
 		}
 	}
 }

@@ -17,7 +17,7 @@ namespace Sistema_de_Lanchonete
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new FrmIngredientes());
+			Application.Run(new FrmLanches());
 		}
 	}
 }

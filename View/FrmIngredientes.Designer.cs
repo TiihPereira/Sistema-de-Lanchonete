@@ -42,7 +42,7 @@
 			this.txtcod = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.tabelaIngredientes = new System.Windows.Forms.DataGridView();
+			this.DataGridIngredientes = new System.Windows.Forms.DataGridView();
 			this.btnpesquisar = new System.Windows.Forms.Button();
 			this.txtpesquisa = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
@@ -50,7 +50,7 @@
 			this.tabIngredientes.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.tabelaIngredientes)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DataGridIngredientes)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -196,7 +196,7 @@
 			// 
 			// tabPage2
 			// 
-			this.tabPage2.Controls.Add(this.tabelaIngredientes);
+			this.tabPage2.Controls.Add(this.DataGridIngredientes);
 			this.tabPage2.Controls.Add(this.btnpesquisar);
 			this.tabPage2.Controls.Add(this.txtpesquisa);
 			this.tabPage2.Controls.Add(this.label5);
@@ -209,14 +209,14 @@
 			this.tabPage2.Text = "Consulta";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
-			// tabelaIngredientes
+			// DataGridIngredientes
 			// 
-			this.tabelaIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.tabelaIngredientes.Location = new System.Drawing.Point(325, 29);
-			this.tabelaIngredientes.Name = "tabelaIngredientes";
-			this.tabelaIngredientes.Size = new System.Drawing.Size(448, 250);
-			this.tabelaIngredientes.TabIndex = 8;
-			this.tabelaIngredientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tabelaIngredientes_CellClick);
+			this.DataGridIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.DataGridIngredientes.Location = new System.Drawing.Point(325, 29);
+			this.DataGridIngredientes.Name = "DataGridIngredientes";
+			this.DataGridIngredientes.Size = new System.Drawing.Size(448, 250);
+			this.DataGridIngredientes.TabIndex = 8;
+			this.DataGridIngredientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tabelaIngredientes_CellClick);
 			// 
 			// btnpesquisar
 			// 
@@ -267,7 +267,7 @@
 			this.tabPage1.PerformLayout();
 			this.tabPage2.ResumeLayout(false);
 			this.tabPage2.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.tabelaIngredientes)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DataGridIngredientes)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -288,7 +288,7 @@
 		private System.Windows.Forms.Button btneditar;
 		private System.Windows.Forms.Button btnexcluir;
 		private System.Windows.Forms.Button btnsalvar;
-		private System.Windows.Forms.DataGridView tabelaIngredientes;
+		private System.Windows.Forms.DataGridView DataGridIngredientes;
 		private System.Windows.Forms.Button btnpesquisar;
 		private System.Windows.Forms.TextBox txtpesquisa;
 		private System.Windows.Forms.Label label5;

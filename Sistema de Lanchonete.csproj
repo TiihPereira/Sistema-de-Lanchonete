@@ -99,13 +99,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BO\IngredientesBO.cs" />
+    <Compile Include="BO\LanchesBO.cs" />
+    <Compile Include="BO\LoginBO.cs" />
     <Compile Include="DAO\IngredientesDAO.cs" />
+    <Compile Include="DAO\LanchesDAO.cs" />
+    <Compile Include="DAO\LoginDAO.cs" />
     <Compile Include="DBC\ConnectionFactory.cs" />
     <Compile Include="Model\Helpers.cs" />
     <Compile Include="Model\Ingredientes.cs" />
     <Compile Include="Model\Lanches.cs" />
+    <Compile Include="Model\Login.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="View\FrmIngredientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,20 +128,34 @@
     <Compile Include="View\FrmLanches.Designer.cs">
       <DependentUpon>FrmLanches.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmMenu.Designer.cs">
+      <DependentUpon>FrmMenu.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="View\FrmIngredientes.resx">
       <DependentUpon>FrmIngredientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FrmLanches.resx">
       <DependentUpon>FrmLanches.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmMenu.resx">
+      <DependentUpon>FrmMenu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -148,5 +172,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\backgroud.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cardapio-64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\configuracoes-64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ingredientes-64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lanches-64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vendas-64px1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

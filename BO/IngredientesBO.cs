@@ -67,27 +67,30 @@ namespace Sistema_de_Lanchonete.BO
 			}
 		}
 
-		public void buscarIngredientePorNome(string nome)
+		public DataTable buscarIngredientePorNome(string nome)
 		{
 			try
 			{
-				ingredientesDAO.BuscarIngredientePorNome(nome);
+				return ingredientesDAO.BuscarIngredientePorNome(nome);
 			}
 			catch (Exception error)
 			{
 				MessageBox.Show("Erro ao tentar buscar: " + error);
+				return null;
 			}
 		}
 
-		public void listarIngredientePorNome(string nome)
+		public DataTable listarIngredientePorNome(string nome)
 		{
 			try
 			{
-				ingredientesDAO.ListarIngredientePorNome(nome);
+				nome = "%" + nome + "%";
+				return ingredientesDAO.ListarIngredientePorNome(nome);
 			}
 			catch (Exception error)
 			{
 				MessageBox.Show("Erro ao tentar listar: " + error);
+				return null;
 			}
 		}
 	}
