@@ -23,6 +23,19 @@ namespace Sistema_de_Lanchonete.Model
 							{
 								(ctr2 as TextBox).Text = string.Empty;
 							}
+							else if (ctr2 is DataGridView dgv)
+							{
+								foreach (DataGridViewColumn coluna in dgv.Columns)
+								{
+									if (coluna is DataGridViewCheckBoxColumn)
+									{
+										foreach (DataGridViewRow linha in dgv.Rows)
+										{
+											linha.Cells[coluna.Index].Value = false;
+										}
+									}
+								}
+							}
 						}
 					}
 				}

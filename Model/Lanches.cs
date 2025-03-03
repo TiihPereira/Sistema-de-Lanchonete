@@ -11,7 +11,7 @@ namespace Sistema_de_Lanchonete.Model
 		public int Id { get; set; }
 		public string Nome { get; set; }
 		public double Preco { get; set; }
-		public List<Ingredientes> Ingredientes { get; set; }
+		public List<Ingredientes> Ingredientes { get; set; }  = new List<Ingredientes>();
 		public bool Ativo { get; set; }
 	}
 }

@@ -21,7 +21,6 @@ namespace Sistema_de_Lanchonete.BO
 		{
 			try
 			{
-				//aqui vai ter que inserir o lanche e com o ID vai ter que inserir na tabela de lanche e igrediente, tem que percorrer a lista de ingrediente da classe Lanche
 				lanchesDAO.cadastrarLanches(lanche);
 				return;
 			}
@@ -30,5 +29,68 @@ namespace Sistema_de_Lanchonete.BO
 				MessageBox.Show("Erro ao tentar cadastrar: " + error);
 			}
 		}
-	}
+
+		public DataTable buscarLanchePorNome(string nome)
+		{
+			try
+			{
+				return lanchesDAO.BuscarLanchePorNome(nome);
+			}
+			catch (Exception error)
+			{
+				MessageBox.Show("Erro ao tentar buscar: " + error);
+				return null;
+			}
+		}
+
+		public void excluirLanches(Lanches lanches)
+		{
+			try
+			{
+				lanchesDAO.excluirLanches(lanches);
+			}
+			catch (Exception error)
+			{
+				MessageBox.Show("Erro ao tentar excluir: " + error);
+			}
+		}
+
+		public DataTable listarLanchePorNome(string nome)
+		{
+			try
+			{
+				nome = "%" + nome + "%";
+				return lanchesDAO.ListarLanchePorNome(nome);
+			}
+			catch (Exception error)
+			{
+				MessageBox.Show("Erro ao tentar listar: " + error);
+				return null;
+			}
+		}
+
+		public DataTable listarLanches()
+		{
+			try
+			{
+				return lanchesDAO.listarLanches();
+			}
+			catch (Exception error)
+			{
+				MessageBox.Show("Erro ao tentar listar: " + error);
+				return null;
+			}
+
+		}
+
+		public List<int> buscarIngredientesDoLanche(int idLanche)
+		{
+			LanchesDAO dao = new LanchesDAO();
+			return dao.buscarIngredientesDoLanche(idLanche);
+		}
+
+		public void alterarLancheComIngredientes(Lanches lanche)
+		{
+			
+		}
 }

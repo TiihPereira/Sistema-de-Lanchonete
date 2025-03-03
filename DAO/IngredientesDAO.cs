@@ -193,8 +193,29 @@ namespace Sistema_de_Lanchonete.DAO
 				MessageBox.Show("Erro ao executar o comando sql: " + erro);
 				return null;
 			}
-
-			#endregion
 		}
+
+		#endregion
+
+		#region LancheExiste
+
+		public bool IngredienteExiste(Ingredientes ingredientes)
+		{
+			string sql = @"SELECT COUNT(*) FROM TB_INGREDIENTES
+								WHERE NOME = @NOME";
+
+			MySqlCommand executacmd = new MySqlCommand(sql, conexao);
+			executacmd.Parameters.AddWithValue("@NOME", ingredientes.Nome);
+
+			conexao.Open();
+			executacmd.ExecuteNonQuery();
+
+			int count = Convert.ToInt32(executacmd.ExecuteScalar());
+			conexao.Close();
+
+			return count > 0;
+		}
+
+		#endregion
 	}
 }

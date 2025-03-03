@@ -1,4 +1,6 @@
-﻿namespace Sistema_de_Lanchonete.View
+﻿using Sistema_de_Lanchonete.Model;
+
+namespace Sistema_de_Lanchonete.View
 {
 	partial class FrmLanches
 	{
@@ -31,8 +33,10 @@
 			this.components = new System.ComponentModel.Container();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabLanches = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.btnexcluir = new System.Windows.Forms.Button();
+			this.btneditar = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
 			this.btnsalvar = new System.Windows.Forms.Button();
 			this.dataGridIngridientes = new System.Windows.Forms.DataGridView();
@@ -49,7 +53,7 @@
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.panel1.SuspendLayout();
-			this.tabControl1.SuspendLayout();
+			this.tabLanches.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridIngridientes)).BeginInit();
 			this.tabPage2.SuspendLayout();
@@ -77,19 +81,21 @@
 			this.panel1.Size = new System.Drawing.Size(800, 100);
 			this.panel1.TabIndex = 2;
 			// 
-			// tabControl1
+			// tabLanches
 			// 
-			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-			this.tabControl1.Location = new System.Drawing.Point(0, 106);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(800, 343);
-			this.tabControl1.TabIndex = 3;
+			this.tabLanches.Controls.Add(this.tabPage1);
+			this.tabLanches.Controls.Add(this.tabPage2);
+			this.tabLanches.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+			this.tabLanches.Location = new System.Drawing.Point(0, 106);
+			this.tabLanches.Name = "tabLanches";
+			this.tabLanches.SelectedIndex = 0;
+			this.tabLanches.Size = new System.Drawing.Size(800, 343);
+			this.tabLanches.TabIndex = 3;
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.Controls.Add(this.btnexcluir);
+			this.tabPage1.Controls.Add(this.btneditar);
 			this.tabPage1.Controls.Add(this.label2);
 			this.tabPage1.Controls.Add(this.btnsalvar);
 			this.tabPage1.Controls.Add(this.dataGridIngridientes);
@@ -106,6 +112,30 @@
 			this.tabPage1.Text = "Lanches";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
+			// btnexcluir
+			// 
+			this.btnexcluir.BackColor = System.Drawing.SystemColors.MenuHighlight;
+			this.btnexcluir.ForeColor = System.Drawing.Color.White;
+			this.btnexcluir.Location = new System.Drawing.Point(665, 34);
+			this.btnexcluir.Name = "btnexcluir";
+			this.btnexcluir.Size = new System.Drawing.Size(103, 36);
+			this.btnexcluir.TabIndex = 19;
+			this.btnexcluir.Text = "Excluir";
+			this.btnexcluir.UseVisualStyleBackColor = false;
+			this.btnexcluir.Click += new System.EventHandler(this.btnexcluir_Click);
+			// 
+			// btneditar
+			// 
+			this.btneditar.BackColor = System.Drawing.SystemColors.MenuHighlight;
+			this.btneditar.ForeColor = System.Drawing.Color.White;
+			this.btneditar.Location = new System.Drawing.Point(526, 34);
+			this.btneditar.Name = "btneditar";
+			this.btneditar.Size = new System.Drawing.Size(103, 36);
+			this.btneditar.TabIndex = 18;
+			this.btneditar.Text = "Editar";
+			this.btneditar.UseVisualStyleBackColor = false;
+			this.btneditar.Click += new System.EventHandler(this.btneditar_Click);
+			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
@@ -121,9 +151,9 @@
 			// 
 			this.btnsalvar.BackColor = System.Drawing.SystemColors.MenuHighlight;
 			this.btnsalvar.ForeColor = System.Drawing.Color.White;
-			this.btnsalvar.Location = new System.Drawing.Point(455, 20);
+			this.btnsalvar.Location = new System.Drawing.Point(386, 34);
 			this.btnsalvar.Name = "btnsalvar";
-			this.btnsalvar.Size = new System.Drawing.Size(120, 36);
+			this.btnsalvar.Size = new System.Drawing.Size(103, 36);
 			this.btnsalvar.TabIndex = 16;
 			this.btnsalvar.Text = "Salvar";
 			this.btnsalvar.UseVisualStyleBackColor = false;
@@ -205,6 +235,7 @@
 			this.dataGridLanches.Name = "dataGridLanches";
 			this.dataGridLanches.Size = new System.Drawing.Size(448, 250);
 			this.dataGridLanches.TabIndex = 12;
+			this.dataGridLanches.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridLanches_CellClick);
 			// 
 			// btnpesquisar
 			// 
@@ -216,6 +247,7 @@
 			this.btnpesquisar.TabIndex = 11;
 			this.btnpesquisar.Text = "Pesquisar";
 			this.btnpesquisar.UseVisualStyleBackColor = false;
+			this.btnpesquisar.Click += new System.EventHandler(this.btnpesquisar_Click);
 			// 
 			// txtpesquisa
 			// 
@@ -223,6 +255,7 @@
 			this.txtpesquisa.Name = "txtpesquisa";
 			this.txtpesquisa.Size = new System.Drawing.Size(197, 23);
 			this.txtpesquisa.TabIndex = 10;
+			this.txtpesquisa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpesquisa_KeyPress);
 			// 
 			// label5
 			// 
@@ -250,14 +283,15 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
-			this.Controls.Add(this.tabControl1);
+			this.Controls.Add(this.tabLanches);
 			this.Controls.Add(this.panel1);
 			this.Name = "FrmLanches";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Cadastro de Lanches";
+			this.Load += new System.EventHandler(this.FrmLanches_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
-			this.tabControl1.ResumeLayout(false);
+			this.tabLanches.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridIngridientes)).EndInit();
@@ -271,7 +305,7 @@
 		#endregion
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabControl tabLanches;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.Button btnsalvar;
 		private System.Windows.Forms.DataGridView dataGridIngridientes;
@@ -288,5 +322,7 @@
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn Selecionar;
+		private System.Windows.Forms.Button btnexcluir;
+		private System.Windows.Forms.Button btneditar;
 	}
 }

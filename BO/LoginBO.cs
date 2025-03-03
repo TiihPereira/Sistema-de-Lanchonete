@@ -17,8 +17,8 @@ namespace Sistema_de_Lanchonete.BO
 		{
 			try
 			{
-				loginDAO.EfetuarLogin(login);
-				return true;
+				return loginDAO.EfetuarLogin(login);
+
 			}
 			catch (Exception erro)
 			{

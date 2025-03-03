@@ -93,5 +93,10 @@ namespace Sistema_de_Lanchonete.BO
 				return null;
 			}
 		}
+
+		public bool IngredienteExiste(Ingredientes ingredientes)
+		{
+			return ingredientesDAO.IngredienteExiste(ingredientes);
+		}
 	}
 }

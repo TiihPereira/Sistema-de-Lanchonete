@@ -1,4 +1,5 @@
 ﻿using Sistema_de_Lanchonete.BO;
+using Sistema_de_Lanchonete.DAO;
 using Sistema_de_Lanchonete.Model;
 using System;
 using System.Collections.Generic;
@@ -20,55 +21,9 @@ namespace Sistema_de_Lanchonete.View
 		{
 			InitializeComponent();
 			IngredientesBO ingredientesBO = new IngredientesBO();
+			txtpreco.ReadOnly = true;
 
 			dataGridIngridientes.DataSource = ingredientesBO.listarIngredientes();
-		}
-
-		private void btnsalvar_Click(object sender, EventArgs e)
-		{
-			MessageBox.Show("FAZ O L");
-			try
-			{
-				Ingredientes ingredientes = new Ingredientes();
-				Lanches lanche = new Lanches();
-				bool temIngredientes = false;
-
-				if (!ChecandoCampos())
-					return;
-
-				lanche.Nome = txtnome.Text.Trim();
-
-				//AQUI PERCORRO TODOS OS CAMPOS DA GRID
-				for (Int32 i = 0; i < dataGridIngridientes.Rows.Count; i++)
-				{
-					//VERIFICO QUAL ESTA SELECIONADO
-					if (dataGridIngridientes.Rows[i].Cells[0].Value != null && dataGridIngridientes.Rows[i].Cells[0].Value.ToString() == "True")
-					{
-						Lanches lanchesAux = new Lanches();
-
-						//VOU CRIAR UM NOVO OBJETO COM AS INFORMAÇÕES SELECIONADAS
-						ingredientes.Id = Convert.ToInt32(dataGridIngridientes.Rows[i].Cells[1].Value.ToString());// coluna 3
-																												   //ingredientes.Nome = DaataGridIngredientes.Rows[i].Cells[2].Value.ToString();// caso precise do nome
-																												   //ingredientes.Preco = Convert.ToDouble(DaataGridIngredientes.Rows[i].Cells[1].Value.ToString());// caso precise do preço
-
-						temIngredientes = true;
-						//lanche.Ingredientes.Add(ingredientes);
-						lanchesBO.cadastrarLanche(lanche);
-					}
-				}
-
-				if (!temIngredientes)
-				{
-					MessageBox.Show("Desculpe, é necessário selecionar algum ingrediente");
-					return;
-				}
-
-				lanchesBO.cadastrarLanche(lanche);
-			}
-			catch (Exception error)
-			{
-				MessageBox.Show("Ocorreu um erro ao cadastrar: " + error.Message);
-			}
 		}
 
 		private bool ChecandoCampos()
@@ -103,6 +58,8 @@ namespace Sistema_de_Lanchonete.View
 
 		private void AtualizarTotal()
 		{
+			Lanches lanche = new Lanches();
+
 			decimal total = 0;
 
 			foreach (DataGridViewRow row in dataGridIngridientes.Rows)
@@ -128,48 +85,151 @@ namespace Sistema_de_Lanchonete.View
 
 		private void btnsalvar_Click_1(object sender, EventArgs e)
 		{
-			MessageBox.Show("FAZ O L");
 			try
 			{
-				Ingredientes ingredientes = new Ingredientes();
-				Lanches lanche = new Lanches();
 				bool temIngredientes = false;
 
 				if (!ChecandoCampos())
 					return;
 
-				lanche.Nome = txtnome.Text.Trim();
+				Lanches lanche = new Lanches();
+				lanche.Nome = txtnome.Text;
+				lanche.Preco = Double.Parse(txtpreco.Text);
 
-				//AQUI PERCORRO TODOS OS CAMPOS DA GRID
-				for (Int32 i = 0; i < dataGridIngridientes.Rows.Count; i++)
+				// Adicionar os ingredientes selecionados
+				foreach (DataGridViewRow row in dataGridIngridientes.Rows)
 				{
-					//VERIFICO QUAL ESTA SELECIONADO
-					if (dataGridIngridientes.Rows[i].Cells[0].Value != null && dataGridIngridientes.Rows[i].Cells[0].Value.ToString() == "True")
+					bool selecionado = Convert.ToBoolean(row.Cells["Selecionar"].Value);
+					if (selecionado)
 					{
-						Lanches lanchesAux = new Lanches();
-
-						//VOU CRIAR UM NOVO OBJETO COM AS INFORMAÇÕES SELECIONADAS
-						ingredientes.Id = Convert.ToInt32(dataGridIngridientes.Rows[i].Cells[1].Value.ToString());// coluna 3
-																												  //ingredientes.Nome = DaataGridIngredientes.Rows[i].Cells[2].Value.ToString();// caso precise do nome
-																												  //ingredientes.Preco = Convert.ToDouble(DaataGridIngredientes.Rows[i].Cells[1].Value.ToString());// caso precise do preço
-
 						temIngredientes = true;
-						//lanche.Ingredientes.Add(ingredientes);
-						lanchesBO.cadastrarLanche(lanche);
+						Ingredientes ingrediente = new Ingredientes();
+						ingrediente.Id = Convert.ToInt32(row.Cells["ID"].Value);
+						lanche.Ingredientes.Add(ingrediente);
 					}
 				}
-
-				if (!temIngredientes)
+				if (temIngredientes)
+				{
+					LanchesBO bo = new LanchesBO();
+					bo.cadastrarLanche(lanche);
+				}
+				else
 				{
 					MessageBox.Show("Desculpe, é necessário selecionar algum ingrediente");
-					return;
 				}
 
-				lanchesBO.cadastrarLanche(lanche);
 			}
 			catch (Exception error)
 			{
 				MessageBox.Show("Ocorreu um erro ao cadastrar: " + error.Message);
+			}
+
+			dataGridLanches.DataSource = lanchesBO.listarLanches();
+			new Helpers().LimparTela(this);
+		}
+
+		private void btnpesquisar_Click(object sender, EventArgs e)
+		{
+			string nome = txtpesquisa.Text;
+
+			LanchesBO lanchesBO = new LanchesBO();
+
+			dataGridLanches.DataSource = lanchesBO.buscarLanchePorNome(nome);
+
+			if (dataGridLanches.Rows.Count == 0)
+			{
+				dataGridLanches.DataSource = lanchesBO.buscarLanchePorNome(nome);
+			}
+
+			new Helpers().LimparTela(this);
+		}
+
+		private void FrmLanches_Load(object sender, EventArgs e)
+		{
+			LanchesBO lanchesBO = new LanchesBO();
+
+			dataGridLanches.DataSource = lanchesBO.listarLanches();
+		}
+
+		private void txtpesquisa_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			LanchesBO lanchesBO = new LanchesBO();
+
+			dataGridLanches.DataSource = lanchesBO.listarLanchePorNome(txtpesquisa.Text);
+		}
+
+		private void btneditar_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				Lanches lanche = new Lanches();
+				lanche.Nome = txtnome.Text;
+				lanche.Preco = double.Parse(txtpreco.Text);
+
+				lanche.Ingredientes = new List<Ingredientes>();
+
+				foreach (DataGridViewRow row in dataGridIngridientes.Rows)
+				{
+					bool selecionado = Convert.ToBoolean(row.Cells["Selecionar"].Value);
+					if (selecionado)
+					{
+						Ingredientes ingrediente = new Ingredientes();
+						ingrediente.Id = Convert.ToInt32(row.Cells["ID"].Value);
+						lanche.Ingredientes.Add(ingrediente);
+					}
+				}
+
+				LanchesBO lanchesbo = new LanchesBO();
+				lanchesbo.alterarLancheComIngredientes(lanche);
+
+				dataGridLanches.DataSource = bo.listarLanches();
+				new Helpers().LimparTela(this);
+
+				MessageBox.Show("Lanche alterado com sucesso!");
+			}
+			catch (Exception erro)
+			{
+				MessageBox.Show("Erro ao alterar lanche: " + erro.Message);
+			}
+		}
+
+		private void btnexcluir_Click(object sender, EventArgs e)
+		{
+			Lanches lanches = new Lanches();
+
+			lanches.Nome = txtnome.Text;
+
+			LanchesBO lanchesBO = new LanchesBO();
+
+			lanchesBO.excluirLanches(lanches);
+
+			dataGridLanches.DataSource = lanchesBO.listarLanches();
+
+			new Helpers().LimparTela(this);
+		}
+
+		private void dataGridLanches_CellClick(object sender, DataGridViewCellEventArgs e)
+		{
+			txtnome.Text = dataGridLanches.CurrentRow.Cells[1].Value.ToString();
+			txtpreco.Text = dataGridLanches.CurrentRow.Cells[2].Value.ToString();
+
+			tabLanches.SelectedTab = tabPage1;
+
+			CarregarIngredientesComSelecionados(idLanche);
+		}
+
+		private void CarregarIngredientesComSelecionados(int idLanche)
+		{
+			LanchesBO lanchesbo = new LanchesBO();
+			List<Ingredientes> todosIngredientes = lanchesbo.listarLanches();
+			List<int> idsIngredientesDoLanche = lanchesbo.buscarIngredientesDoLanche(idLanche);
+
+			dataGridIngridientes.Rows.Clear();
+
+			foreach (var ingrediente in todosIngredientes)
+			{
+				bool selecionado = idsIngredientesDoLanche.Contains(ingrediente.Id);
+				dataGridIngridientes.Rows.Add(selecionado, ingrediente.Id, ingrediente.Nome, ingrediente.Preco);
 			}
 		}
 	}

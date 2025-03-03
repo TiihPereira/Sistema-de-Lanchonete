@@ -31,6 +31,13 @@ namespace Sistema_de_Lanchonete.View
 			ingredientes.Preco = double.Parse(txtpreco.Text);
 
 			IngredientesBO ingredientesBO = new IngredientesBO();
+
+			if(ingredientesBO.IngredienteExiste(ingredientes))
+			{
+				MessageBox.Show("Esse ingrediente já esta cadastrado!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+
 			ingredientesBO.cadastrarIngredientes(ingredientes);
 
 			DataGridIngredientes.DataSource = ingredientesBO.listarIngredientes();
