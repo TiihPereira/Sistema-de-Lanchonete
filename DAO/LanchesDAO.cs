@@ -23,7 +23,7 @@ namespace Sistema_de_Lanchonete.DAO
 
 		#region CadastrarLanche
 
-		public void cadastrarLanches(Lanches lanches)
+		public void CadastrarLanches(Lanches lanches)
 		{
 			try
 			{
@@ -66,9 +66,64 @@ namespace Sistema_de_Lanchonete.DAO
 
 		#endregion
 
+		#region AlterarLanches
+
+		public void AlterarLanches(Lanches lanches)
+		{
+			try
+			{
+				string sqlLanche = @"UPDATE TB_LANCHES 
+							 SET PRECO = @PRECO
+							 WHERE NOME = @NOME";
+
+				MySqlCommand cmdlanche = new MySqlCommand(sqlLanche, conexao);
+				cmdlanche.Parameters.AddWithValue("@NOME", lanches.Nome);
+				cmdlanche.Parameters.AddWithValue("@PRECO", lanches.Preco);
+
+				conexao.Open();
+				cmdlanche.ExecuteNonQuery();
+
+				// BUSCAR O ID DO LANCHE BASEADO NO NOME
+				string sqlGetId = "SELECT ID FROM TB_LANCHES WHERE NOME = @NOME";
+				MySqlCommand cmdGetId = new MySqlCommand(sqlGetId, conexao);
+				cmdGetId.Parameters.AddWithValue("@NOME", lanches.Nome);
+
+				int lancheId = Convert.ToInt32(cmdGetId.ExecuteScalar());
+
+				// DELETE DOS INGREDIENTES ANTIGOS
+				string sqlDeleteIngredientes = "DELETE FROM TB_LANCHES_INGREDIENTES WHERE ID_LANCHE = @ID_LANCHE";
+
+				MySqlCommand cmdDelete = new MySqlCommand(sqlDeleteIngredientes, conexao);
+				cmdDelete.Parameters.AddWithValue("@ID_LANCHE", lancheId);
+				cmdDelete.ExecuteNonQuery();
+
+				// INSERT DOS NOVOS INGREDIENTES
+				string sqlLancheIngrediente = @"INSERT INTO TB_LANCHES_INGREDIENTES(ID_LANCHE, ID_INGREDIENTE)
+										VALUES(@ID_LANCHE, @ID_INGREDIENTE)";
+
+				foreach (var ingrediente in lanches.Ingredientes)
+				{
+					MySqlCommand cmdingrediente = new MySqlCommand(sqlLancheIngrediente, conexao);
+					cmdingrediente.Parameters.AddWithValue("@ID_LANCHE", lancheId);
+					cmdingrediente.Parameters.AddWithValue("@ID_INGREDIENTE", ingrediente.Id);
+					cmdingrediente.ExecuteNonQuery();
+				}
+
+				MessageBox.Show("Lanche alterado com sucesso!");
+			}
+			catch (Exception error)
+			{
+				MessageBox.Show("Erro ao tentar alterar: " + error.Message);
+			}
+
+			conexao.Close();
+		}
+
+		#endregion
+
 		#region ExcluirLanches
 
-		public void excluirLanches(Lanches lanches)
+		public void ExcluirLanches(Lanches lanches)
 		{
 			try
 			{
@@ -97,7 +152,7 @@ namespace Sistema_de_Lanchonete.DAO
 
 		#region ListarLanches
 
-		public DataTable listarLanches()
+		public DataTable ListarLanches()
 		{
 			try
 			{
@@ -128,7 +183,7 @@ namespace Sistema_de_Lanchonete.DAO
 
 		#endregion
 
-		public List<int> buscarIngredientesDoLanche(int idLanche)
+		public List<int> BuscarIngredientesDoLanche(int idLanche)
 		{
 			List<int> ids = new List<int>();
 
@@ -210,6 +265,8 @@ namespace Sistema_de_Lanchonete.DAO
 			}
 
 			#endregion
+
 		}
+
 	}
 }

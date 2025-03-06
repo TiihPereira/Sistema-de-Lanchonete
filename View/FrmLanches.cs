@@ -23,7 +23,7 @@ namespace Sistema_de_Lanchonete.View
 			IngredientesBO ingredientesBO = new IngredientesBO();
 			txtpreco.ReadOnly = true;
 
-			dataGridIngridientes.DataSource = ingredientesBO.listarIngredientes();
+			dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientes();
 		}
 
 		private bool ChecandoCampos()
@@ -47,9 +47,9 @@ namespace Sistema_de_Lanchonete.View
 			return true;
 		}
 
-		private void dataGridIngridientes_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+		private void dataGridIngredientes_CellValueChanged(object sender, DataGridViewCellEventArgs e)
 		{
-			if (e.ColumnIndex == dataGridIngridientes.Columns["Selecionar"].Index)
+			if (e.ColumnIndex == dataGridIngredientes.Columns["Selecionado"].Index)
 			{
 				AtualizarTotal();
 			}
@@ -62,9 +62,9 @@ namespace Sistema_de_Lanchonete.View
 
 			decimal total = 0;
 
-			foreach (DataGridViewRow row in dataGridIngridientes.Rows)
+			foreach (DataGridViewRow row in dataGridIngredientes.Rows)
 			{
-				bool selecionado = Convert.ToBoolean(row.Cells["Selecionar"].Value);
+				bool selecionado = Convert.ToBoolean(row.Cells["Selecionado"].Value);
 				if (selecionado)
 				{
 					decimal preco = Convert.ToDecimal(row.Cells["Preco"].Value);
@@ -75,11 +75,11 @@ namespace Sistema_de_Lanchonete.View
 			txtpreco.Text = total.ToString("F2");
 		}
 
-		private void dataGridIngridientes_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+		private void dataGridIngredientes_CurrentCellDirtyStateChanged(object sender, EventArgs e)
 		{
-			if (dataGridIngridientes.CurrentCell is DataGridViewCheckBoxCell)
+			if (dataGridIngredientes.CurrentCell is DataGridViewCheckBoxCell)
 			{
-				dataGridIngridientes.CommitEdit(DataGridViewDataErrorContexts.Commit);
+				dataGridIngredientes.CommitEdit(DataGridViewDataErrorContexts.Commit);
 			}
 		}
 
@@ -93,13 +93,18 @@ namespace Sistema_de_Lanchonete.View
 					return;
 
 				Lanches lanche = new Lanches();
+				lanche.Ingredientes = new List<Ingredientes>();
 				lanche.Nome = txtnome.Text;
-				lanche.Preco = Double.Parse(txtpreco.Text);
-
-				// Adicionar os ingredientes selecionados
-				foreach (DataGridViewRow row in dataGridIngridientes.Rows)
+				if (!double.TryParse(txtpreco.Text, out double preco))
 				{
-					bool selecionado = Convert.ToBoolean(row.Cells["Selecionar"].Value);
+					MessageBox.Show("Preço inválido.");
+					return;
+				}
+				lanche.Preco = preco;
+
+				foreach (DataGridViewRow row in dataGridIngredientes.Rows)
+				{
+					bool selecionado = Convert.ToBoolean(row.Cells["Selecionado"].Value);
 					if (selecionado)
 					{
 						temIngredientes = true;
@@ -111,7 +116,7 @@ namespace Sistema_de_Lanchonete.View
 				if (temIngredientes)
 				{
 					LanchesBO bo = new LanchesBO();
-					bo.cadastrarLanche(lanche);
+					bo.CadastrarLanche(lanche);
 				}
 				else
 				{
@@ -124,21 +129,28 @@ namespace Sistema_de_Lanchonete.View
 				MessageBox.Show("Ocorreu um erro ao cadastrar: " + error.Message);
 			}
 
-			dataGridLanches.DataSource = lanchesBO.listarLanches();
+			dataGridLanches.DataSource = lanchesBO.ListarLanches();
 			new Helpers().LimparTela(this);
 		}
 
 		private void btnpesquisar_Click(object sender, EventArgs e)
 		{
+
 			string nome = txtpesquisa.Text;
 
 			LanchesBO lanchesBO = new LanchesBO();
 
-			dataGridLanches.DataSource = lanchesBO.buscarLanchePorNome(nome);
+			if (string.IsNullOrEmpty(txtpesquisa.Text))
+			{
+				dataGridLanches.DataSource = lanchesBO.ListarLanches();
+				return;
+			}
+
+			dataGridLanches.DataSource = lanchesBO.ListarLanchePorNome(nome);
 
 			if (dataGridLanches.Rows.Count == 0)
 			{
-				dataGridLanches.DataSource = lanchesBO.buscarLanchePorNome(nome);
+				dataGridLanches.DataSource = lanchesBO.ListarLanches();
 			}
 
 			new Helpers().LimparTela(this);
@@ -148,62 +160,55 @@ namespace Sistema_de_Lanchonete.View
 		{
 			LanchesBO lanchesBO = new LanchesBO();
 
-			dataGridLanches.DataSource = lanchesBO.listarLanches();
+			dataGridLanches.DataSource = lanchesBO.ListarLanches();
 		}
 
 		private void txtpesquisa_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			LanchesBO lanchesBO = new LanchesBO();
 
-			dataGridLanches.DataSource = lanchesBO.listarLanchePorNome(txtpesquisa.Text);
+			dataGridLanches.DataSource = lanchesBO.ListarLanchePorNome(txtpesquisa.Text);
 		}
 
 		private void btneditar_Click(object sender, EventArgs e)
 		{
 			try
 			{
-				Lanches lanche = new Lanches();
-				lanche.Nome = txtnome.Text;
-				lanche.Preco = double.Parse(txtpreco.Text);
-
-				lanche.Ingredientes = new List<Ingredientes>();
-
-				foreach (DataGridViewRow row in dataGridIngridientes.Rows)
+				Lanches lanche = new Lanches
 				{
-					bool selecionado = Convert.ToBoolean(row.Cells["Selecionar"].Value);
-					if (selecionado)
-					{
-						Ingredientes ingrediente = new Ingredientes();
-						ingrediente.Id = Convert.ToInt32(row.Cells["ID"].Value);
-						lanche.Ingredientes.Add(ingrediente);
-					}
-				}
+					Nome = txtnome.Text,
+					Preco = Convert.ToDouble(txtpreco.Text),
+					Ingredientes = ObterIngredientesSelecionados()
+				};
 
-				LanchesBO lanchesbo = new LanchesBO();
-				lanchesbo.alterarLancheComIngredientes(lanche);
-
-				dataGridLanches.DataSource = bo.listarLanches();
-				new Helpers().LimparTela(this);
+				LanchesBO bo = new LanchesBO();
+				bo.AlterarLanche(lanche);
 
 				MessageBox.Show("Lanche alterado com sucesso!");
 			}
-			catch (Exception erro)
+			catch (Exception error)
 			{
-				MessageBox.Show("Erro ao alterar lanche: " + erro.Message);
+				MessageBox.Show("Erro ao tentar alterar: " + error.Message);
 			}
+
+			new Helpers().LimparTela(this);
 		}
 
 		private void btnexcluir_Click(object sender, EventArgs e)
 		{
+
+			if (!ChecandoCampos())
+				return;
+
 			Lanches lanches = new Lanches();
 
 			lanches.Nome = txtnome.Text;
 
 			LanchesBO lanchesBO = new LanchesBO();
 
-			lanchesBO.excluirLanches(lanches);
+			lanchesBO.ExcluirLanches(lanches);
 
-			dataGridLanches.DataSource = lanchesBO.listarLanches();
+			dataGridLanches.DataSource = lanchesBO.ListarLanches();
 
 			new Helpers().LimparTela(this);
 		}
@@ -212,25 +217,61 @@ namespace Sistema_de_Lanchonete.View
 		{
 			txtnome.Text = dataGridLanches.CurrentRow.Cells[1].Value.ToString();
 			txtpreco.Text = dataGridLanches.CurrentRow.Cells[2].Value.ToString();
-
-			tabLanches.SelectedTab = tabPage1;
-
+			
+			tabCadastroLanches.SelectedTab = tabLanches;
+			int idLanche = Convert.ToInt32(dataGridLanches.CurrentRow.Cells[0].Value);
+			
 			CarregarIngredientesComSelecionados(idLanche);
+
 		}
 
 		private void CarregarIngredientesComSelecionados(int idLanche)
 		{
-			LanchesBO lanchesbo = new LanchesBO();
-			List<Ingredientes> todosIngredientes = lanchesbo.listarLanches();
-			List<int> idsIngredientesDoLanche = lanchesbo.buscarIngredientesDoLanche(idLanche);
-
-			dataGridIngridientes.Rows.Clear();
-
-			foreach (var ingrediente in todosIngredientes)
+			try
 			{
-				bool selecionado = idsIngredientesDoLanche.Contains(ingrediente.Id);
-				dataGridIngridientes.Rows.Add(selecionado, ingrediente.Id, ingrediente.Nome, ingrediente.Preco);
+				LanchesBO lanchesbo = new LanchesBO();
+				List<Ingredientes> todosIngredientes = lanchesbo.ListarLanches();
+				List<int> idsIngredientesDoLanche = lanchesbo.BuscarIngredientesDoLanche(idLanche);
+						
+				foreach (var ingrediente in idsIngredientesDoLanche)
+				{
+					foreach (DataGridViewRow row in dataGridIngredientes.Rows)
+					{
+
+						if (idsIngredientesDoLanche.Contains(Convert.ToInt32(row.Cells[1].Value)))
+						{
+							row.Cells[0].Value = 1;
+						}		
+					}				}
 			}
+			catch (Exception erro)
+			{
+				MessageBox.Show("Erro ao carregar ingredientes: " + erro.Message);
+			}
+		}
+
+		private List<Ingredientes> ObterIngredientesSelecionados()
+		{
+			var ingredientesSelecionados = new List<Ingredientes>();
+			
+			foreach (DataGridViewRow row in dataGridIngredientes.Rows)
+			{
+				bool isChecked = Convert.ToBoolean(row.Cells[0].Value);
+				if (isChecked)
+				{
+					int id = Convert.ToInt32(row.Cells[1].Value);
+					string nome = row.Cells[2].Value.ToString();
+			
+					ingredientesSelecionados.Add(new Ingredientes
+					{
+						Id = id,
+						Nome = nome
+					});
+				}
+			}
+			
+			return ingredientesSelecionados;
+
 		}
 	}
 }

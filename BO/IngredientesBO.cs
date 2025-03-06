@@ -17,11 +17,11 @@ namespace Sistema_de_Lanchonete.BO
 	{
 		private IngredientesDAO ingredientesDAO = new IngredientesDAO();
 
-		public void cadastrarIngredientes(Ingredientes ingredientes)
+		public void CadastrarIngredientes(Ingredientes ingredientes)
 		{
 			try
 			{
-				ingredientesDAO.cadastrarIngredientes(ingredientes);
+				ingredientesDAO.CadastrarIngredientes(ingredientes);
 			}
 			catch (Exception error)
 			{
@@ -29,11 +29,11 @@ namespace Sistema_de_Lanchonete.BO
 			}
 		}
 
-		public void alterarIngredientes(Ingredientes ingredientes)
+		public void AlterarIngredientes(Ingredientes ingredientes)
 		{
 			try
 			{
-				ingredientesDAO.alterarIngredientes(ingredientes);
+				ingredientesDAO.AlterarIngredientes(ingredientes);
 			}
 			catch (Exception error)
 			{
@@ -41,11 +41,11 @@ namespace Sistema_de_Lanchonete.BO
 			}
 		}
 
-		public DataTable listarIngredientes()
+		public DataTable ListarIngredientes()
 		{
 			try
 			{
-				return ingredientesDAO.listarIngredientes();
+				return ingredientesDAO.ListarIngredientes();
 			}
 			catch (Exception error)
 			{
@@ -55,11 +55,11 @@ namespace Sistema_de_Lanchonete.BO
 
 		}
 
-		public void excluirIngredientes(Ingredientes ingredientes)
+		public void ExcluirIngredientes(Ingredientes ingredientes)
 		{
 			try
 			{
-				ingredientesDAO.excluirIngredientes(ingredientes);
+				ingredientesDAO.ExcluirIngredientes(ingredientes);
 			}
 			catch (Exception error)
 			{
@@ -67,7 +67,7 @@ namespace Sistema_de_Lanchonete.BO
 			}
 		}
 
-		public DataTable buscarIngredientePorNome(string nome)
+		public DataTable BuscarIngredientePorNome(string nome)
 		{
 			try
 			{
@@ -80,7 +80,7 @@ namespace Sistema_de_Lanchonete.BO
 			}
 		}
 
-		public DataTable listarIngredientePorNome(string nome)
+		public DataTable ListarIngredientePorNome(string nome)
 		{
 			try
 			{
@@ -98,5 +98,6 @@ namespace Sistema_de_Lanchonete.BO
 		{
 			return ingredientesDAO.IngredienteExiste(ingredientes);
 		}
+
 	}
 }

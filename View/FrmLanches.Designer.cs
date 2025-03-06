@@ -32,31 +32,31 @@ namespace Sistema_de_Lanchonete.View
 		{
 			this.components = new System.ComponentModel.Container();
 			this.label1 = new System.Windows.Forms.Label();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.tabLanches = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.panelCadastroLanches = new System.Windows.Forms.Panel();
+			this.tabCadastroLanches = new System.Windows.Forms.TabControl();
+			this.tabLanches = new System.Windows.Forms.TabPage();
 			this.btnexcluir = new System.Windows.Forms.Button();
 			this.btneditar = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
 			this.btnsalvar = new System.Windows.Forms.Button();
-			this.dataGridIngridientes = new System.Windows.Forms.DataGridView();
-			this.Selecionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.dataGridIngredientes = new System.Windows.Forms.DataGridView();
 			this.txtpreco = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.txtnome = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.tabLanchesConsulta = new System.Windows.Forms.TabPage();
 			this.dataGridLanches = new System.Windows.Forms.DataGridView();
 			this.btnpesquisar = new System.Windows.Forms.Button();
 			this.txtpesquisa = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.panel1.SuspendLayout();
+			this.Selecionado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.panelCadastroLanches.SuspendLayout();
+			this.tabCadastroLanches.SuspendLayout();
 			this.tabLanches.SuspendLayout();
-			this.tabPage1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridIngridientes)).BeginInit();
-			this.tabPage2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridIngredientes)).BeginInit();
+			this.tabLanchesConsulta.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridLanches)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -71,46 +71,46 @@ namespace Sistema_de_Lanchonete.View
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Cadastro de Lanches";
 			// 
-			// panel1
+			// panelCadastroLanches
 			// 
-			this.panel1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-			this.panel1.Controls.Add(this.label1);
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel1.Location = new System.Drawing.Point(0, 0);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(800, 100);
-			this.panel1.TabIndex = 2;
+			this.panelCadastroLanches.BackColor = System.Drawing.SystemColors.MenuHighlight;
+			this.panelCadastroLanches.Controls.Add(this.label1);
+			this.panelCadastroLanches.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panelCadastroLanches.Location = new System.Drawing.Point(0, 0);
+			this.panelCadastroLanches.Name = "panelCadastroLanches";
+			this.panelCadastroLanches.Size = new System.Drawing.Size(800, 100);
+			this.panelCadastroLanches.TabIndex = 2;
+			// 
+			// tabCadastroLanches
+			// 
+			this.tabCadastroLanches.Controls.Add(this.tabLanches);
+			this.tabCadastroLanches.Controls.Add(this.tabLanchesConsulta);
+			this.tabCadastroLanches.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+			this.tabCadastroLanches.Location = new System.Drawing.Point(0, 106);
+			this.tabCadastroLanches.Name = "tabCadastroLanches";
+			this.tabCadastroLanches.SelectedIndex = 0;
+			this.tabCadastroLanches.Size = new System.Drawing.Size(800, 343);
+			this.tabCadastroLanches.TabIndex = 3;
 			// 
 			// tabLanches
 			// 
-			this.tabLanches.Controls.Add(this.tabPage1);
-			this.tabLanches.Controls.Add(this.tabPage2);
+			this.tabLanches.Controls.Add(this.btnexcluir);
+			this.tabLanches.Controls.Add(this.btneditar);
+			this.tabLanches.Controls.Add(this.label2);
+			this.tabLanches.Controls.Add(this.btnsalvar);
+			this.tabLanches.Controls.Add(this.dataGridIngredientes);
+			this.tabLanches.Controls.Add(this.txtpreco);
+			this.tabLanches.Controls.Add(this.label4);
+			this.tabLanches.Controls.Add(this.txtnome);
+			this.tabLanches.Controls.Add(this.label3);
 			this.tabLanches.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-			this.tabLanches.Location = new System.Drawing.Point(0, 106);
+			this.tabLanches.Location = new System.Drawing.Point(4, 26);
 			this.tabLanches.Name = "tabLanches";
-			this.tabLanches.SelectedIndex = 0;
-			this.tabLanches.Size = new System.Drawing.Size(800, 343);
-			this.tabLanches.TabIndex = 3;
-			// 
-			// tabPage1
-			// 
-			this.tabPage1.Controls.Add(this.btnexcluir);
-			this.tabPage1.Controls.Add(this.btneditar);
-			this.tabPage1.Controls.Add(this.label2);
-			this.tabPage1.Controls.Add(this.btnsalvar);
-			this.tabPage1.Controls.Add(this.dataGridIngridientes);
-			this.tabPage1.Controls.Add(this.txtpreco);
-			this.tabPage1.Controls.Add(this.label4);
-			this.tabPage1.Controls.Add(this.txtnome);
-			this.tabPage1.Controls.Add(this.label3);
-			this.tabPage1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-			this.tabPage1.Location = new System.Drawing.Point(4, 26);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(792, 313);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "Lanches";
-			this.tabPage1.UseVisualStyleBackColor = true;
+			this.tabLanches.Padding = new System.Windows.Forms.Padding(3);
+			this.tabLanches.Size = new System.Drawing.Size(792, 313);
+			this.tabLanches.TabIndex = 0;
+			this.tabLanches.Text = "Lanches";
+			this.tabLanches.UseVisualStyleBackColor = true;
 			// 
 			// btnexcluir
 			// 
@@ -159,23 +159,17 @@ namespace Sistema_de_Lanchonete.View
 			this.btnsalvar.UseVisualStyleBackColor = false;
 			this.btnsalvar.Click += new System.EventHandler(this.btnsalvar_Click_1);
 			// 
-			// dataGridIngridientes
+			// dataGridIngredientes
 			// 
-			this.dataGridIngridientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridIngridientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Selecionar});
-			this.dataGridIngridientes.Location = new System.Drawing.Point(14, 107);
-			this.dataGridIngridientes.Name = "dataGridIngridientes";
-			this.dataGridIngridientes.Size = new System.Drawing.Size(768, 203);
-			this.dataGridIngridientes.TabIndex = 15;
-			this.dataGridIngridientes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridIngridientes_CellValueChanged);
-			this.dataGridIngridientes.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridIngridientes_CurrentCellDirtyStateChanged);
-			// 
-			// Selecionar
-			// 
-			this.Selecionar.DataPropertyName = "Selecionar";
-			this.Selecionar.HeaderText = "";
-			this.Selecionar.Name = "Selecionar";
+			this.dataGridIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridIngredientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Selecionado});
+			this.dataGridIngredientes.Location = new System.Drawing.Point(14, 107);
+			this.dataGridIngredientes.Name = "dataGridIngredientes";
+			this.dataGridIngredientes.Size = new System.Drawing.Size(768, 203);
+			this.dataGridIngredientes.TabIndex = 15;
+			this.dataGridIngredientes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridIngredientes_CellValueChanged);
+			this.dataGridIngredientes.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridIngredientes_CurrentCellDirtyStateChanged);
 			// 
 			// txtpreco
 			// 
@@ -213,20 +207,20 @@ namespace Sistema_de_Lanchonete.View
 			this.label3.TabIndex = 13;
 			this.label3.Text = "Nome:";
 			// 
-			// tabPage2
+			// tabLanchesConsulta
 			// 
-			this.tabPage2.Controls.Add(this.dataGridLanches);
-			this.tabPage2.Controls.Add(this.btnpesquisar);
-			this.tabPage2.Controls.Add(this.txtpesquisa);
-			this.tabPage2.Controls.Add(this.label5);
-			this.tabPage2.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-			this.tabPage2.Location = new System.Drawing.Point(4, 26);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(792, 313);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "Consulta";
-			this.tabPage2.UseVisualStyleBackColor = true;
+			this.tabLanchesConsulta.Controls.Add(this.dataGridLanches);
+			this.tabLanchesConsulta.Controls.Add(this.btnpesquisar);
+			this.tabLanchesConsulta.Controls.Add(this.txtpesquisa);
+			this.tabLanchesConsulta.Controls.Add(this.label5);
+			this.tabLanchesConsulta.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+			this.tabLanchesConsulta.Location = new System.Drawing.Point(4, 26);
+			this.tabLanchesConsulta.Name = "tabLanchesConsulta";
+			this.tabLanchesConsulta.Padding = new System.Windows.Forms.Padding(3);
+			this.tabLanchesConsulta.Size = new System.Drawing.Size(792, 313);
+			this.tabLanchesConsulta.TabIndex = 1;
+			this.tabLanchesConsulta.Text = "Consulta";
+			this.tabLanchesConsulta.UseVisualStyleBackColor = true;
 			// 
 			// dataGridLanches
 			// 
@@ -278,25 +272,31 @@ namespace Sistema_de_Lanchonete.View
 			this.contextMenuStrip2.Name = "contextMenuStrip2";
 			this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
 			// 
+			// Selecionado
+			// 
+			this.Selecionado.DataPropertyName = "Selecionado";
+			this.Selecionado.HeaderText = "";
+			this.Selecionado.Name = "Selecionado";
+			// 
 			// FrmLanches
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
-			this.Controls.Add(this.tabLanches);
-			this.Controls.Add(this.panel1);
+			this.Controls.Add(this.tabCadastroLanches);
+			this.Controls.Add(this.panelCadastroLanches);
 			this.Name = "FrmLanches";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Cadastro de Lanches";
 			this.Load += new System.EventHandler(this.FrmLanches_Load);
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
+			this.panelCadastroLanches.ResumeLayout(false);
+			this.panelCadastroLanches.PerformLayout();
+			this.tabCadastroLanches.ResumeLayout(false);
 			this.tabLanches.ResumeLayout(false);
-			this.tabPage1.ResumeLayout(false);
-			this.tabPage1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridIngridientes)).EndInit();
-			this.tabPage2.ResumeLayout(false);
-			this.tabPage2.PerformLayout();
+			this.tabLanches.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridIngredientes)).EndInit();
+			this.tabLanchesConsulta.ResumeLayout(false);
+			this.tabLanchesConsulta.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridLanches)).EndInit();
 			this.ResumeLayout(false);
 
@@ -304,16 +304,16 @@ namespace Sistema_de_Lanchonete.View
 
 		#endregion
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.TabControl tabLanches;
-		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.Panel panelCadastroLanches;
+		private System.Windows.Forms.TabControl tabCadastroLanches;
+		private System.Windows.Forms.TabPage tabLanches;
 		private System.Windows.Forms.Button btnsalvar;
-		private System.Windows.Forms.DataGridView dataGridIngridientes;
+		private System.Windows.Forms.DataGridView dataGridIngredientes;
 		private System.Windows.Forms.TextBox txtpreco;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.TextBox txtnome;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.TabPage tabLanchesConsulta;
 		private System.Windows.Forms.DataGridView dataGridLanches;
 		private System.Windows.Forms.Button btnpesquisar;
 		private System.Windows.Forms.TextBox txtpesquisa;
@@ -321,8 +321,8 @@ namespace Sistema_de_Lanchonete.View
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
-		private System.Windows.Forms.DataGridViewCheckBoxColumn Selecionar;
 		private System.Windows.Forms.Button btnexcluir;
 		private System.Windows.Forms.Button btneditar;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn Selecionado;
 	}
 }

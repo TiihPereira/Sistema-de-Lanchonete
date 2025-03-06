@@ -28,7 +28,12 @@ namespace Sistema_de_Lanchonete.View
 				return;
 
 			ingredientes.Nome = txtnome.Text;
-			ingredientes.Preco = double.Parse(txtpreco.Text);
+			if (!double.TryParse(txtpreco.Text, out double preco))
+			{
+				MessageBox.Show("Preço inválido.");
+				return;
+			}
+			ingredientes.Preco = preco;
 
 			IngredientesBO ingredientesBO = new IngredientesBO();
 
@@ -38,9 +43,9 @@ namespace Sistema_de_Lanchonete.View
 				return;
 			}
 
-			ingredientesBO.cadastrarIngredientes(ingredientes);
+			ingredientesBO.CadastrarIngredientes(ingredientes);
 
-			DataGridIngredientes.DataSource = ingredientesBO.listarIngredientes();
+			dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientes();
 
 			new Helpers().LimparTela(this);
 		}
@@ -49,29 +54,32 @@ namespace Sistema_de_Lanchonete.View
 		{
 			IngredientesBO ingredientesBO = new IngredientesBO();
 
-			DataGridIngredientes.DataSource = ingredientesBO.listarIngredientes();
+			dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientes();
 		}
 
-		private void tabelaIngredientes_CellClick(object sender, DataGridViewCellEventArgs e)
+		private void dataGridIngredientes_CellClick(object sender, DataGridViewCellEventArgs e)
 		{
-			txtcod.Text = DataGridIngredientes.CurrentRow.Cells[0].Value.ToString();
-			txtnome.Text = DataGridIngredientes.CurrentRow.Cells[1].Value.ToString();
-			txtpreco.Text = DataGridIngredientes.CurrentRow.Cells[2].Value.ToString();
+			txtcod.Text = dataGridIngredientes.CurrentRow.Cells[0].Value.ToString();
+			txtnome.Text = dataGridIngredientes.CurrentRow.Cells[1].Value.ToString();
+			txtpreco.Text = dataGridIngredientes.CurrentRow.Cells[2].Value.ToString();
 
-			tabIngredientes.SelectedTab = tabPage1;
+			tabCadastroIngredientes.SelectedTab = tabIngredientes;
 		}
 
 		private void btnexcluir_Click(object sender, EventArgs e)
 		{
 			Ingredientes ingredientes = new Ingredientes();
 
+			if (!ChecandoCampos())
+				return;
+
 			ingredientes.Id = int.Parse(txtcod.Text);
 
 			IngredientesBO ingredientesBO = new IngredientesBO();
 
-			ingredientesBO.excluirIngredientes(ingredientes);
+			ingredientesBO.ExcluirIngredientes(ingredientes);
 
-			DataGridIngredientes.DataSource = ingredientesBO.listarIngredientes();
+			dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientes();
 
 			new Helpers().LimparTela(this);
 		}
@@ -84,13 +92,18 @@ namespace Sistema_de_Lanchonete.View
 				return;
 
 			ingredientes.Nome = txtnome.Text;
-			ingredientes.Preco = double.Parse(txtpreco.Text);
+			if (!double.TryParse(txtpreco.Text, out double preco))
+			{
+				MessageBox.Show("Preço inválido.");
+				return;
+			}
+			ingredientes.Preco = preco;
 			ingredientes.Id = int.Parse(txtcod.Text);
 
 			IngredientesBO ingredientesBO = new IngredientesBO();
-			ingredientesBO.alterarIngredientes(ingredientes);
+			ingredientesBO.AlterarIngredientes(ingredientes);
 
-			DataGridIngredientes.DataSource = ingredientesBO.listarIngredientes();
+			dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientes();
 
 			new Helpers().LimparTela(this);
 		}
@@ -101,11 +114,17 @@ namespace Sistema_de_Lanchonete.View
 
 			IngredientesBO ingredientesBO = new IngredientesBO();
 
-			DataGridIngredientes.DataSource = ingredientesBO.buscarIngredientePorNome(nome);
-
-			if(DataGridIngredientes.Rows.Count == 0)
+			if (string.IsNullOrEmpty(txtpesquisa.Text))
 			{
-				DataGridIngredientes.DataSource = ingredientesBO.listarIngredientes();
+				dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientes();
+				return;
+			}
+
+			dataGridIngredientes.DataSource = ingredientesBO.BuscarIngredientePorNome(nome);
+
+			if(dataGridIngredientes.Rows.Count == 0)
+			{
+				dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientes();
 			}
 
 		}
@@ -115,7 +134,7 @@ namespace Sistema_de_Lanchonete.View
 
 			IngredientesBO ingredientesBO = new IngredientesBO();
 
-			DataGridIngredientes.DataSource = ingredientesBO.listarIngredientePorNome(txtpesquisa.Text);
+			dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientePorNome(txtpesquisa.Text);
 
 		}
 

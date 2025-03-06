@@ -28,10 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.panel1 = new System.Windows.Forms.Panel();
+			this.panelIngredientes = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
-			this.tabIngredientes = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.tabCadastroIngredientes = new System.Windows.Forms.TabControl();
+			this.tabIngredientes = new System.Windows.Forms.TabPage();
 			this.btneditar = new System.Windows.Forms.Button();
 			this.txtpreco = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
@@ -41,27 +41,27 @@
 			this.btnsalvar = new System.Windows.Forms.Button();
 			this.txtcod = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.DataGridIngredientes = new System.Windows.Forms.DataGridView();
+			this.tabIngredientesConsulta = new System.Windows.Forms.TabPage();
+			this.dataGridIngredientes = new System.Windows.Forms.DataGridView();
 			this.btnpesquisar = new System.Windows.Forms.Button();
 			this.txtpesquisa = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
-			this.panel1.SuspendLayout();
+			this.panelIngredientes.SuspendLayout();
+			this.tabCadastroIngredientes.SuspendLayout();
 			this.tabIngredientes.SuspendLayout();
-			this.tabPage1.SuspendLayout();
-			this.tabPage2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.DataGridIngredientes)).BeginInit();
+			this.tabIngredientesConsulta.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridIngredientes)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// panel1
+			// panelIngredientes
 			// 
-			this.panel1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-			this.panel1.Controls.Add(this.label1);
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel1.Location = new System.Drawing.Point(0, 0);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(811, 100);
-			this.panel1.TabIndex = 0;
+			this.panelIngredientes.BackColor = System.Drawing.SystemColors.MenuHighlight;
+			this.panelIngredientes.Controls.Add(this.label1);
+			this.panelIngredientes.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panelIngredientes.Location = new System.Drawing.Point(0, 0);
+			this.panelIngredientes.Name = "panelIngredientes";
+			this.panelIngredientes.Size = new System.Drawing.Size(811, 100);
+			this.panelIngredientes.TabIndex = 0;
 			// 
 			// label1
 			// 
@@ -74,35 +74,35 @@
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Cadastro de Ingredientes";
 			// 
+			// tabCadastroIngredientes
+			// 
+			this.tabCadastroIngredientes.Controls.Add(this.tabIngredientes);
+			this.tabCadastroIngredientes.Controls.Add(this.tabIngredientesConsulta);
+			this.tabCadastroIngredientes.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tabCadastroIngredientes.Location = new System.Drawing.Point(0, 106);
+			this.tabCadastroIngredientes.Name = "tabCadastroIngredientes";
+			this.tabCadastroIngredientes.SelectedIndex = 0;
+			this.tabCadastroIngredientes.Size = new System.Drawing.Size(800, 338);
+			this.tabCadastroIngredientes.TabIndex = 1;
+			// 
 			// tabIngredientes
 			// 
-			this.tabIngredientes.Controls.Add(this.tabPage1);
-			this.tabIngredientes.Controls.Add(this.tabPage2);
-			this.tabIngredientes.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tabIngredientes.Location = new System.Drawing.Point(0, 106);
+			this.tabIngredientes.Controls.Add(this.btneditar);
+			this.tabIngredientes.Controls.Add(this.txtpreco);
+			this.tabIngredientes.Controls.Add(this.label4);
+			this.tabIngredientes.Controls.Add(this.btnexcluir);
+			this.tabIngredientes.Controls.Add(this.txtnome);
+			this.tabIngredientes.Controls.Add(this.label3);
+			this.tabIngredientes.Controls.Add(this.btnsalvar);
+			this.tabIngredientes.Controls.Add(this.txtcod);
+			this.tabIngredientes.Controls.Add(this.label2);
+			this.tabIngredientes.Location = new System.Drawing.Point(4, 26);
 			this.tabIngredientes.Name = "tabIngredientes";
-			this.tabIngredientes.SelectedIndex = 0;
-			this.tabIngredientes.Size = new System.Drawing.Size(800, 338);
-			this.tabIngredientes.TabIndex = 1;
-			// 
-			// tabPage1
-			// 
-			this.tabPage1.Controls.Add(this.btneditar);
-			this.tabPage1.Controls.Add(this.txtpreco);
-			this.tabPage1.Controls.Add(this.label4);
-			this.tabPage1.Controls.Add(this.btnexcluir);
-			this.tabPage1.Controls.Add(this.txtnome);
-			this.tabPage1.Controls.Add(this.label3);
-			this.tabPage1.Controls.Add(this.btnsalvar);
-			this.tabPage1.Controls.Add(this.txtcod);
-			this.tabPage1.Controls.Add(this.label2);
-			this.tabPage1.Location = new System.Drawing.Point(4, 26);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(792, 308);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "Ingredientes";
-			this.tabPage1.UseVisualStyleBackColor = true;
+			this.tabIngredientes.Padding = new System.Windows.Forms.Padding(3);
+			this.tabIngredientes.Size = new System.Drawing.Size(792, 308);
+			this.tabIngredientes.TabIndex = 0;
+			this.tabIngredientes.Text = "Ingredientes";
+			this.tabIngredientes.UseVisualStyleBackColor = true;
 			// 
 			// btneditar
 			// 
@@ -194,29 +194,29 @@
 			this.label2.TabIndex = 0;
 			this.label2.Text = "Código:";
 			// 
-			// tabPage2
+			// tabIngredientesConsulta
 			// 
-			this.tabPage2.Controls.Add(this.DataGridIngredientes);
-			this.tabPage2.Controls.Add(this.btnpesquisar);
-			this.tabPage2.Controls.Add(this.txtpesquisa);
-			this.tabPage2.Controls.Add(this.label5);
-			this.tabPage2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tabPage2.Location = new System.Drawing.Point(4, 26);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(792, 308);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "Consulta";
-			this.tabPage2.UseVisualStyleBackColor = true;
+			this.tabIngredientesConsulta.Controls.Add(this.dataGridIngredientes);
+			this.tabIngredientesConsulta.Controls.Add(this.btnpesquisar);
+			this.tabIngredientesConsulta.Controls.Add(this.txtpesquisa);
+			this.tabIngredientesConsulta.Controls.Add(this.label5);
+			this.tabIngredientesConsulta.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tabIngredientesConsulta.Location = new System.Drawing.Point(4, 26);
+			this.tabIngredientesConsulta.Name = "tabIngredientesConsulta";
+			this.tabIngredientesConsulta.Padding = new System.Windows.Forms.Padding(3);
+			this.tabIngredientesConsulta.Size = new System.Drawing.Size(792, 308);
+			this.tabIngredientesConsulta.TabIndex = 1;
+			this.tabIngredientesConsulta.Text = "Consulta";
+			this.tabIngredientesConsulta.UseVisualStyleBackColor = true;
 			// 
-			// DataGridIngredientes
+			// dataGridIngredientes
 			// 
-			this.DataGridIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.DataGridIngredientes.Location = new System.Drawing.Point(325, 29);
-			this.DataGridIngredientes.Name = "DataGridIngredientes";
-			this.DataGridIngredientes.Size = new System.Drawing.Size(448, 250);
-			this.DataGridIngredientes.TabIndex = 8;
-			this.DataGridIngredientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tabelaIngredientes_CellClick);
+			this.dataGridIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridIngredientes.Location = new System.Drawing.Point(325, 29);
+			this.dataGridIngredientes.Name = "dataGridIngredientes";
+			this.dataGridIngredientes.Size = new System.Drawing.Size(448, 250);
+			this.dataGridIngredientes.TabIndex = 8;
+			this.dataGridIngredientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridIngredientes_CellClick);
 			// 
 			// btnpesquisar
 			// 
@@ -254,31 +254,31 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(811, 458);
-			this.Controls.Add(this.tabIngredientes);
-			this.Controls.Add(this.panel1);
+			this.Controls.Add(this.tabCadastroIngredientes);
+			this.Controls.Add(this.panelIngredientes);
 			this.Name = "FrmIngredientes";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Cadastro de Ingredientes";
 			this.Load += new System.EventHandler(this.FrmIngredientes_Load);
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
+			this.panelIngredientes.ResumeLayout(false);
+			this.panelIngredientes.PerformLayout();
+			this.tabCadastroIngredientes.ResumeLayout(false);
 			this.tabIngredientes.ResumeLayout(false);
-			this.tabPage1.ResumeLayout(false);
-			this.tabPage1.PerformLayout();
-			this.tabPage2.ResumeLayout(false);
-			this.tabPage2.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.DataGridIngredientes)).EndInit();
+			this.tabIngredientes.PerformLayout();
+			this.tabIngredientesConsulta.ResumeLayout(false);
+			this.tabIngredientesConsulta.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridIngredientes)).EndInit();
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Panel panelIngredientes;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TabControl tabIngredientes;
-		private System.Windows.Forms.TabPage tabPage1;
-		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.TabControl tabCadastroIngredientes;
+		private System.Windows.Forms.TabPage tabIngredientes;
+		private System.Windows.Forms.TabPage tabIngredientesConsulta;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.TextBox txtnome;
 		private System.Windows.Forms.Label label3;
@@ -288,7 +288,7 @@
 		private System.Windows.Forms.Button btneditar;
 		private System.Windows.Forms.Button btnexcluir;
 		private System.Windows.Forms.Button btnsalvar;
-		private System.Windows.Forms.DataGridView DataGridIngredientes;
+		private System.Windows.Forms.DataGridView dataGridIngredientes;
 		private System.Windows.Forms.Button btnpesquisar;
 		private System.Windows.Forms.TextBox txtpesquisa;
 		private System.Windows.Forms.Label label5;

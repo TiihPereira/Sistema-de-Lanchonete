@@ -21,7 +21,7 @@ namespace Sistema_de_Lanchonete.DAO
 		}
 
 		#region CadastrarIngrediente
-		public void cadastrarIngredientes(Ingredientes ingredientes)
+		public void CadastrarIngredientes(Ingredientes ingredientes)
 		{
 			try
 			{
@@ -48,7 +48,7 @@ namespace Sistema_de_Lanchonete.DAO
 
 		#region AlterarIngredientes
 
-		public void alterarIngredientes(Ingredientes ingredientes)
+		public void AlterarIngredientes(Ingredientes ingredientes)
 		{
 			try
 			{
@@ -77,7 +77,7 @@ namespace Sistema_de_Lanchonete.DAO
 
 		#region ExcluirIngredientes
 
-		public void excluirIngredientes(Ingredientes ingredientes)
+		public void ExcluirIngredientes(Ingredientes ingredientes)
 		{
 			try
 			{
@@ -103,7 +103,7 @@ namespace Sistema_de_Lanchonete.DAO
 
 		#region ListarIngredientes
 
-		public DataTable listarIngredientes()
+		public DataTable ListarIngredientes()
 		{
 			try
 			{
@@ -197,7 +197,7 @@ namespace Sistema_de_Lanchonete.DAO
 
 		#endregion
 
-		#region LancheExiste
+		#region IngredienteExiste
 
 		public bool IngredienteExiste(Ingredientes ingredientes)
 		{
@@ -217,5 +217,6 @@ namespace Sistema_de_Lanchonete.DAO
 		}
 
 		#endregion
+
 	}
 }
