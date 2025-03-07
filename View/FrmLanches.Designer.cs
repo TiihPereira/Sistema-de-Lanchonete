@@ -40,6 +40,7 @@ namespace Sistema_de_Lanchonete.View
 			this.label2 = new System.Windows.Forms.Label();
 			this.btnsalvar = new System.Windows.Forms.Button();
 			this.dataGridIngredientes = new System.Windows.Forms.DataGridView();
+			this.Selecionado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.txtpreco = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.txtnome = new System.Windows.Forms.TextBox();
@@ -51,7 +52,6 @@ namespace Sistema_de_Lanchonete.View
 			this.label5 = new System.Windows.Forms.Label();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.Selecionado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.panelCadastroLanches.SuspendLayout();
 			this.tabCadastroLanches.SuspendLayout();
 			this.tabLanches.SuspendLayout();
@@ -171,6 +171,12 @@ namespace Sistema_de_Lanchonete.View
 			this.dataGridIngredientes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridIngredientes_CellValueChanged);
 			this.dataGridIngredientes.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridIngredientes_CurrentCellDirtyStateChanged);
 			// 
+			// Selecionado
+			// 
+			this.Selecionado.DataPropertyName = "Selecionado";
+			this.Selecionado.HeaderText = "";
+			this.Selecionado.Name = "Selecionado";
+			// 
 			// txtpreco
 			// 
 			this.txtpreco.Location = new System.Drawing.Point(78, 47);
@@ -271,12 +277,6 @@ namespace Sistema_de_Lanchonete.View
 			// 
 			this.contextMenuStrip2.Name = "contextMenuStrip2";
 			this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
-			// 
-			// Selecionado
-			// 
-			this.Selecionado.DataPropertyName = "Selecionado";
-			this.Selecionado.HeaderText = "";
-			this.Selecionado.Name = "Selecionado";
 			// 
 			// FrmLanches
 			// 

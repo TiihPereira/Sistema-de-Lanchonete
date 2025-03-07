@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Mysqlx;
+using Sistema_de_Lanchonete.BO;
 using Sistema_de_Lanchonete.DBC;
 using Sistema_de_Lanchonete.Model;
 using System;
@@ -183,7 +184,7 @@ namespace Sistema_de_Lanchonete.DAO
 
 		#endregion
 
-		public List<int> BuscarIngredientesDoLanche(int idLanche)
+		public List<int> BuscarIngredientesDoLanchePorId(int idLanche)
 		{
 			List<int> ids = new List<int>();
 
@@ -201,6 +202,35 @@ namespace Sistema_de_Lanchonete.DAO
 			}
 
 			return ids;
+		}
+
+		public List<Ingredientes> BuscarIngredientesDoLanche(int idLanche)
+		{
+			List<Ingredientes> ingredientes = new List<Ingredientes>();
+
+			string sql = @"SELECT B.ID, B.NOME, B.PRECO FROM TB_LANCHES_INGREDIENTES A
+							INNER JOIN TB_INGREDIENTES B ON A.ID_INGREDIENTE = B.ID 
+								WHERE A.ID_LANCHE = @idLanche";
+
+			MySqlCommand executacmd = new MySqlCommand(sql, conexao);
+			executacmd.Parameters.AddWithValue("@idLanche", idLanche);
+
+			conexao.Open();
+			MySqlDataReader reader = executacmd.ExecuteReader();
+
+			while (reader.Read())
+			{
+				Ingredientes ingrediente = new Ingredientes
+				{
+					Id = Convert.ToInt32(reader["ID"]),
+					Nome = reader["NOME"].ToString(),
+					Preco = Convert.ToDouble(reader["PRECO"])
+				};
+
+				ingredientes.Add(ingrediente);
+			}
+
+			return ingredientes;
 		}
 
 		#region BuscarLanchePorNome
@@ -265,7 +295,31 @@ namespace Sistema_de_Lanchonete.DAO
 			}
 
 			#endregion
+		}
 
+		public List<Lanches> BuscarTodosLanches()
+		{
+			List<Lanches> lista = new List<Lanches>();
+
+			string sql = "SELECT * FROM TB_LANCHES";
+
+			MySqlCommand executacmd = new MySqlCommand(sql, conexao);
+			conexao.Open();
+			MySqlDataReader reader = executacmd.ExecuteReader();
+
+			while (reader.Read())
+			{
+				Lanches lanche = new Lanches
+				{
+					Id = reader.GetInt32(reader.GetOrdinal("Id")),
+					Nome = reader.GetString(reader.GetOrdinal("Nome")),
+					Preco = reader.GetDouble(reader.GetOrdinal("Preco"))
+				};
+
+				lista.Add(lanche);
+			}
+
+			return lista;
 		}
 
 	}

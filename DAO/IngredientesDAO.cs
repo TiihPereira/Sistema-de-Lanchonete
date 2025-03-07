@@ -103,7 +103,7 @@ namespace Sistema_de_Lanchonete.DAO
 
 		#region ListarIngredientes
 
-		public DataTable ListarIngredientes()
+		public DataTable ListarIngredientesDT()
 		{
 			try
 			{
@@ -127,6 +127,41 @@ namespace Sistema_de_Lanchonete.DAO
 			catch (Exception error)
 			{
 
+				MessageBox.Show("Erro ao executar o comando sql: " + error);
+				return null;
+			}
+		}
+
+		public List<Ingredientes> ListarIngredientes()
+		{
+			try
+			{
+				List<Ingredientes> listaIngredientes = new List<Ingredientes>();
+
+				string sql = "SELECT * FROM TB_INGREDIENTES";
+
+				MySqlCommand executacmd = new MySqlCommand(sql, conexao);
+
+				conexao.Open();
+				MySqlDataReader reader = executacmd.ExecuteReader();
+
+				while (reader.Read())
+				{
+					Ingredientes ingrediente = new Ingredientes
+					{
+						Id = reader.GetInt32("Id"),
+						Nome = reader.GetString("Nome"),
+						Preco = reader.GetDouble("Preco"),
+					};
+					listaIngredientes.Add(ingrediente);
+				}
+
+				conexao.Close();
+
+				return listaIngredientes;
+			}
+			catch (Exception error)
+			{
 				MessageBox.Show("Erro ao executar o comando sql: " + error);
 				return null;
 			}

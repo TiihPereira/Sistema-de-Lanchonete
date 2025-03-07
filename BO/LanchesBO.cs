@@ -57,19 +57,31 @@ namespace Sistema_de_Lanchonete.BO
 			}
 		}
 
-		//public DataTable ListarLanches()
-		//{
-		//	try
-		//	{
-		//		return lanchesDAO.ListarLanches();
-		//	}
-		//	catch (Exception error)
-		//	{
-		//		MessageBox.Show("Erro ao tentar listar: " + error);
-		//		return null;
-		//	}
-		//
-		//}
+		public DataTable ListarLanchesDT()
+		{
+			try
+			{
+				return lanchesDAO.ListarLanches();
+			}
+			catch (Exception error)
+			{
+				MessageBox.Show("Erro ao tentar listar: " + error);
+				return null;
+			}		
+		}
+
+		public List<Lanches> BuscarTodosLanches()
+		{
+			try
+			{
+				return lanchesDAO.BuscarTodosLanches();
+			}
+			catch (Exception error)
+			{
+				MessageBox.Show("Erro ao tentar buscar: " + error);
+				return null;
+			}
+		}
 
 		public DataTable ListarLanchePorNome(string nome)
 		{
@@ -98,7 +110,13 @@ namespace Sistema_de_Lanchonete.BO
 			}
 		}
 
-		public List<int> BuscarIngredientesDoLanche(int idLanche)
+		public List<int> BuscarIngredientesDoLanchePorId(int idLanche)
+		{
+			LanchesDAO dao = new LanchesDAO();
+			return dao.BuscarIngredientesDoLanchePorId(idLanche);
+		}
+
+		public List<Ingredientes> BuscarIngredientesDoLanche(int idLanche)
 		{
 			LanchesDAO dao = new LanchesDAO();
 			return dao.BuscarIngredientesDoLanche(idLanche);

@@ -45,7 +45,7 @@ namespace Sistema_de_Lanchonete.View
 
 			ingredientesBO.CadastrarIngredientes(ingredientes);
 
-			dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientes();
+			dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientesDT();
 
 			new Helpers().LimparTela(this);
 		}
@@ -54,7 +54,7 @@ namespace Sistema_de_Lanchonete.View
 		{
 			IngredientesBO ingredientesBO = new IngredientesBO();
 
-			dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientes();
+			dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientesDT();
 		}
 
 		private void dataGridIngredientes_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -79,7 +79,7 @@ namespace Sistema_de_Lanchonete.View
 
 			ingredientesBO.ExcluirIngredientes(ingredientes);
 
-			dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientes();
+			dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientesDT();
 
 			new Helpers().LimparTela(this);
 		}
@@ -103,7 +103,7 @@ namespace Sistema_de_Lanchonete.View
 			IngredientesBO ingredientesBO = new IngredientesBO();
 			ingredientesBO.AlterarIngredientes(ingredientes);
 
-			dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientes();
+			dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientesDT();
 
 			new Helpers().LimparTela(this);
 		}
@@ -116,7 +116,7 @@ namespace Sistema_de_Lanchonete.View
 
 			if (string.IsNullOrEmpty(txtpesquisa.Text))
 			{
-				dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientes();
+				dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientesDT();
 				return;
 			}
 
@@ -124,7 +124,7 @@ namespace Sistema_de_Lanchonete.View
 
 			if(dataGridIngredientes.Rows.Count == 0)
 			{
-				dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientes();
+				dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientesDT();
 			}
 
 		}

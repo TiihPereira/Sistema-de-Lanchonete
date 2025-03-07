@@ -23,7 +23,7 @@ namespace Sistema_de_Lanchonete.View
 			IngredientesBO ingredientesBO = new IngredientesBO();
 			txtpreco.ReadOnly = true;
 
-			dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientes();
+			dataGridIngredientes.DataSource = ingredientesBO.ListarIngredientesDT();
 		}
 
 		private bool ChecandoCampos()
@@ -160,7 +160,7 @@ namespace Sistema_de_Lanchonete.View
 		{
 			LanchesBO lanchesBO = new LanchesBO();
 
-			dataGridLanches.DataSource = lanchesBO.ListarLanches();
+			dataGridLanches.DataSource = lanchesBO.ListarLanchesDT();
 		}
 
 		private void txtpesquisa_KeyPress(object sender, KeyPressEventArgs e)
@@ -231,7 +231,7 @@ namespace Sistema_de_Lanchonete.View
 			{
 				LanchesBO lanchesbo = new LanchesBO();
 				List<Ingredientes> todosIngredientes = lanchesbo.ListarLanches();
-				List<int> idsIngredientesDoLanche = lanchesbo.BuscarIngredientesDoLanche(idLanche);
+				List<int> idsIngredientesDoLanche = lanchesbo.BuscarIngredientesDoLanchePorId(idLanche);
 						
 				foreach (var ingrediente in idsIngredientesDoLanche)
 				{
@@ -241,8 +241,9 @@ namespace Sistema_de_Lanchonete.View
 						if (idsIngredientesDoLanche.Contains(Convert.ToInt32(row.Cells[1].Value)))
 						{
 							row.Cells[0].Value = 1;
-						}		
-					}				}
+						}
+					}
+				}	
 			}
 			catch (Exception erro)
 			{

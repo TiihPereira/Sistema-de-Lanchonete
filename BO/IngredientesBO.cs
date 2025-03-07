@@ -41,7 +41,21 @@ namespace Sistema_de_Lanchonete.BO
 			}
 		}
 
-		public DataTable ListarIngredientes()
+		public DataTable ListarIngredientesDT()
+		{
+			try
+			{
+				return ingredientesDAO.ListarIngredientesDT();
+			}
+			catch (Exception error)
+			{
+				MessageBox.Show("Erro ao tentar listar: " + error);
+				return null;
+			}
+
+		}
+
+		public List<Ingredientes> ListarIngredientes()
 		{
 			try
 			{
