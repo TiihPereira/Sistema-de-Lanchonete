@@ -38,7 +38,6 @@
 			this.menuConsultaIngredientes = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuCardapio = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuVendas = new System.Windows.Forms.ToolStripMenuItem();
-			this.menuNovaVenda = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuHistoricoVenda = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuConfiguracoes = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuTrocarUsuario = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +51,7 @@
 			this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.txtusuario = new System.Windows.Forms.ToolStripStatusLabel();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
+			this.cardápioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -87,12 +87,14 @@
 			this.menuCadastroLanches.Name = "menuCadastroLanches";
 			this.menuCadastroLanches.Size = new System.Drawing.Size(183, 22);
 			this.menuCadastroLanches.Text = "Cadastro de Lanches";
+			this.menuCadastroLanches.Click += new System.EventHandler(this.menuCadastroLanches_Click);
 			// 
 			// menuConsultaLanches
 			// 
 			this.menuConsultaLanches.Name = "menuConsultaLanches";
 			this.menuConsultaLanches.Size = new System.Drawing.Size(183, 22);
 			this.menuConsultaLanches.Text = "Consulta de Lanches";
+			this.menuConsultaLanches.Click += new System.EventHandler(this.menuConsultaLanches_Click);
 			// 
 			// menuIngredientes
 			// 
@@ -110,15 +112,19 @@
 			this.menuCadastroIngredientes.Name = "menuCadastroIngredientes";
 			this.menuCadastroIngredientes.Size = new System.Drawing.Size(205, 22);
 			this.menuCadastroIngredientes.Text = "Cadastro de Ingredientes";
+			this.menuCadastroIngredientes.Click += new System.EventHandler(this.menuCadastroIngredientes_Click);
 			// 
 			// menuConsultaIngredientes
 			// 
 			this.menuConsultaIngredientes.Name = "menuConsultaIngredientes";
 			this.menuConsultaIngredientes.Size = new System.Drawing.Size(205, 22);
 			this.menuConsultaIngredientes.Text = "Consulta de Ingredientes";
+			this.menuConsultaIngredientes.Click += new System.EventHandler(this.menuConsultaIngredientes_Click);
 			// 
 			// menuCardapio
 			// 
+			this.menuCardapio.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cardápioToolStripMenuItem});
 			this.menuCardapio.Image = global::Sistema_de_Lanchonete.Properties.Resources.cardapio_64px;
 			this.menuCardapio.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.menuCardapio.Name = "menuCardapio";
@@ -128,7 +134,6 @@
 			// menuVendas
 			// 
 			this.menuVendas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuNovaVenda,
             this.menuHistoricoVenda});
 			this.menuVendas.Image = global::Sistema_de_Lanchonete.Properties.Resources.vendas_64px;
 			this.menuVendas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -136,17 +141,12 @@
 			this.menuVendas.Size = new System.Drawing.Size(120, 68);
 			this.menuVendas.Text = "Vendas";
 			// 
-			// menuNovaVenda
-			// 
-			this.menuNovaVenda.Name = "menuNovaVenda";
-			this.menuNovaVenda.Size = new System.Drawing.Size(180, 22);
-			this.menuNovaVenda.Text = "Nova Venda";
-			// 
 			// menuHistoricoVenda
 			// 
 			this.menuHistoricoVenda.Name = "menuHistoricoVenda";
 			this.menuHistoricoVenda.Size = new System.Drawing.Size(180, 22);
 			this.menuHistoricoVenda.Text = "Histórico de Vendas";
+			this.menuHistoricoVenda.Click += new System.EventHandler(this.menuHistoricoVenda_Click);
 			// 
 			// menuConfiguracoes
 			// 
@@ -162,14 +162,14 @@
 			// menuTrocarUsuario
 			// 
 			this.menuTrocarUsuario.Name = "menuTrocarUsuario";
-			this.menuTrocarUsuario.Size = new System.Drawing.Size(180, 22);
+			this.menuTrocarUsuario.Size = new System.Drawing.Size(165, 22);
 			this.menuTrocarUsuario.Text = "Trocar de Usuário";
 			this.menuTrocarUsuario.Click += new System.EventHandler(this.menuTrocarUsuario_Click);
 			// 
 			// menuSair
 			// 
 			this.menuSair.Name = "menuSair";
-			this.menuSair.Size = new System.Drawing.Size(180, 22);
+			this.menuSair.Size = new System.Drawing.Size(165, 22);
 			this.menuSair.Text = "Sair";
 			this.menuSair.Click += new System.EventHandler(this.menuSair_Click);
 			// 
@@ -237,12 +237,19 @@
 			this.timer1.Enabled = true;
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
+			// cardápioToolStripMenuItem
+			// 
+			this.cardápioToolStripMenuItem.Name = "cardápioToolStripMenuItem";
+			this.cardápioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.cardápioToolStripMenuItem.Text = "Cardápio";
+			this.cardápioToolStripMenuItem.Click += new System.EventHandler(this.cardápioToolStripMenuItem_Click);
+			// 
 			// FrmMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackgroundImage = global::Sistema_de_Lanchonete.Properties.Resources.backgroud;
-			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.BackgroundImage = global::Sistema_de_Lanchonete.Properties.Resources.backgroud1;
+			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.ClientSize = new System.Drawing.Size(698, 686);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.menuStrip1);
@@ -279,11 +286,11 @@
 		public System.Windows.Forms.ToolStripMenuItem menuConsultaLanches;
 		public System.Windows.Forms.ToolStripMenuItem menuCadastroIngredientes;
 		public System.Windows.Forms.ToolStripMenuItem menuConsultaIngredientes;
-		public System.Windows.Forms.ToolStripMenuItem menuNovaVenda;
 		public System.Windows.Forms.ToolStripMenuItem menuHistoricoVenda;
 		public System.Windows.Forms.ToolStripStatusLabel txtdata;
 		public System.Windows.Forms.ToolStripStatusLabel txthora;
 		public System.Windows.Forms.ToolStripStatusLabel txtusuario;
 		private System.Windows.Forms.Timer timer1;
+		private System.Windows.Forms.ToolStripMenuItem cardápioToolStripMenuItem;
 	}
 }

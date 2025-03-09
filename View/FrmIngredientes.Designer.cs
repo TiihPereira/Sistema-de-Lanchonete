@@ -211,6 +211,7 @@
 			// 
 			// dataGridIngredientes
 			// 
+			this.dataGridIngredientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridIngredientes.Location = new System.Drawing.Point(325, 29);
 			this.dataGridIngredientes.Name = "dataGridIngredientes";
@@ -276,9 +277,6 @@
 
 		private System.Windows.Forms.Panel panelIngredientes;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TabControl tabCadastroIngredientes;
-		private System.Windows.Forms.TabPage tabIngredientes;
-		private System.Windows.Forms.TabPage tabIngredientesConsulta;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.TextBox txtnome;
 		private System.Windows.Forms.Label label3;
@@ -292,5 +290,8 @@
 		private System.Windows.Forms.Button btnpesquisar;
 		private System.Windows.Forms.TextBox txtpesquisa;
 		private System.Windows.Forms.Label label5;
+		public System.Windows.Forms.TabControl tabCadastroIngredientes;
+		public System.Windows.Forms.TabPage tabIngredientes;
+		public System.Windows.Forms.TabPage tabIngredientesConsulta;
 	}
 }

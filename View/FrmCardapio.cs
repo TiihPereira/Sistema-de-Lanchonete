@@ -292,6 +292,84 @@ namespace Sistema_de_Lanchonete.View
 			}
 		}
 
+		private int ObterIDLancheSelecionado()
+		{
+			if (listCarrinho.Items.Count == 0)
+			{
+				throw new Exception("Nenhum lanche selecionado!");
+			}
+
+			var item = listCarrinho.Items[0];
+			var (lanche, _) = (Tuple<Lanches, List<Ingredientes>>)item.Tag;
+			return lanche.Id;
+		}
+
+		private double CalcularValorTotal()
+		{
+			double total = 0;
+			foreach (var (_, ingredientes) in carrinho)
+			{
+				total += ingredientes.Sum(i => i.Preco);
+			}
+			return total;
+		}
+
+		private List<int> ObterIngredientesSelecionados()
+		{
+			if (listCarrinho.Items.Count == 0)
+			{
+				throw new Exception("Nenhum lanche selecionado!");
+			}
+
+			var item = listCarrinho.Items[0];
+			var (_, ingredientes) = (Tuple<Lanches, List<Ingredientes>>)item.Tag;
+			return ingredientes.Select(i => i.Id).ToList();
+		}
+
+		public void SalvarPedido()
+		{
+			VendasBO vendasBO = new VendasBO();
+			List<Vendas> listaVendas = new List<Vendas>();
+			//
+			//foreach (var (lanche, ingredientes) in carrinho)
+			//{
+			//	foreach (var ingrediente in ingredientes)
+			//	{
+			//		double valorTotal = ingrediente.Preco;
+			//		Vendas venda = new Vendas(lanche.Id, ingrediente.Id, valorTotal);
+			//		listaVendas.Add(venda);
+			//	}
+			//}
+			//
+			//vendasBO.SalvarVendas(listaVendas);
+			//
+			//MessageBox.Show("Pedido salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+			try
+			{
+				int idLanche = ObterIDLancheSelecionado();
+				double valorTotal = CalcularValorTotal();
+				DateTime dataVenda = DateTime.Now;
+				List<int> ingredientes = ObterIngredientesSelecionados();
+
+				bool sucesso = vendasBO.SalvarVendas(idLanche, valorTotal, dataVenda, ingredientes);
+
+				if (sucesso)
+				{
+					MessageBox.Show("Pedido salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				else
+				{
+					MessageBox.Show("Erro ao salvar pedido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Erro ao processar pedido: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+
+		}
+
 		private void FinalizarPedido(object sender, EventArgs e)
 		{
 			if (carrinho.Count == 0)
@@ -299,6 +377,8 @@ namespace Sistema_de_Lanchonete.View
 				MessageBox.Show("Seu carrinho está vazio!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return;
 			}
+
+			SalvarPedido();
 
 			MessageBox.Show($"Pedido finalizado!\nTotal: R$ {totalComDesconto:F2}", "Pedido Confirmado");
 			this.Close();

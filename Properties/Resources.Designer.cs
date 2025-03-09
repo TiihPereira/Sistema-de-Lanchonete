@@ -73,6 +73,16 @@ namespace Sistema_de_Lanchonete.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap backgroud1 {
+            get {
+                object obj = ResourceManager.GetObject("backgroud1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cardapio_64px {
             get {
                 object obj = ResourceManager.GetObject("cardapio-64px", resourceCulture);

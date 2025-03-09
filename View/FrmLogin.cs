@@ -29,10 +29,17 @@ namespace Sistema_de_Lanchonete.View
 			
 			if (loginBO.EfetuarLogin(login))
 			{
-
 				this.Hide();
 			}
 
+		}
+
+		private void txtsenha_KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyCode == Keys.Enter)
+			{
+				btnentrar.PerformClick();
+			}
 		}
 	}
 }

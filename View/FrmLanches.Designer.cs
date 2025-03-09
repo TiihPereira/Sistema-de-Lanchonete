@@ -230,6 +230,7 @@ namespace Sistema_de_Lanchonete.View
 			// 
 			// dataGridLanches
 			// 
+			this.dataGridLanches.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridLanches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridLanches.Location = new System.Drawing.Point(331, 31);
 			this.dataGridLanches.Name = "dataGridLanches";
@@ -305,7 +306,6 @@ namespace Sistema_de_Lanchonete.View
 		#endregion
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Panel panelCadastroLanches;
-		private System.Windows.Forms.TabControl tabCadastroLanches;
 		private System.Windows.Forms.TabPage tabLanches;
 		private System.Windows.Forms.Button btnsalvar;
 		private System.Windows.Forms.DataGridView dataGridIngredientes;
@@ -313,7 +313,6 @@ namespace Sistema_de_Lanchonete.View
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.TextBox txtnome;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TabPage tabLanchesConsulta;
 		private System.Windows.Forms.DataGridView dataGridLanches;
 		private System.Windows.Forms.Button btnpesquisar;
 		private System.Windows.Forms.TextBox txtpesquisa;
@@ -324,5 +323,7 @@ namespace Sistema_de_Lanchonete.View
 		private System.Windows.Forms.Button btnexcluir;
 		private System.Windows.Forms.Button btneditar;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn Selecionado;
+		public System.Windows.Forms.TabPage tabLanchesConsulta;
+		public System.Windows.Forms.TabControl tabCadastroLanches;
 	}
 }

@@ -37,12 +37,49 @@ namespace Sistema_de_Lanchonete.View
 			}
 			
 		}
-
 		private void menuTrocarUsuario_Click(object sender, EventArgs e)
 		{
 			this.Hide();
 			FrmLogin login = new FrmLogin();
 			login.ShowDialog();
+		}
+
+		private void menuCadastroLanches_Click(object sender, EventArgs e)
+		{
+			FrmLanches frmLanches = new FrmLanches();
+			frmLanches.ShowDialog();
+		}
+
+		private void menuConsultaLanches_Click(object sender, EventArgs e)
+		{
+			FrmLanches frmLanches = new FrmLanches();
+			frmLanches.tabCadastroLanches.SelectedTab = frmLanches.tabLanchesConsulta;
+			frmLanches.ShowDialog();
+		}
+
+		private void menuCadastroIngredientes_Click(object sender, EventArgs e)
+		{
+			FrmIngredientes frmingredientes = new FrmIngredientes();
+			frmingredientes.ShowDialog();
+		}
+
+		private void menuConsultaIngredientes_Click(object sender, EventArgs e)
+		{
+			FrmIngredientes frmingredientes = new FrmIngredientes();
+			frmingredientes.tabCadastroIngredientes.SelectedTab = frmingredientes.tabIngredientesConsulta;
+			frmingredientes.ShowDialog();
+		}
+
+		private void cardápioToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			FrmCardapio frmCardapio = new FrmCardapio();
+			frmCardapio.ShowDialog();
+		}
+
+		private void menuHistoricoVenda_Click(object sender, EventArgs e)
+		{
+			FrmVendas frmVendas = new FrmVendas();
+			frmVendas.ShowDialog();
 		}
 	}
 }
