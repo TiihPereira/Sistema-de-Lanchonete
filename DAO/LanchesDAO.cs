@@ -317,6 +317,7 @@ namespace Sistema_de_Lanchonete.DAO
 
 				lista.Add(lanche);
 			}
+			conexao.Close();
 
 			return lista;
 		}
