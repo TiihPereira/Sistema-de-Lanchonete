@@ -195,9 +195,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="database\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\backgroud.jpg" />
   </ItemGroup>
@@ -221,6 +219,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\vendas-64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="database\Script Banco MySQL.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
