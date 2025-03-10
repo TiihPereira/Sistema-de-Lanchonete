@@ -47,7 +47,6 @@ namespace Sistema_de_Lanchonete.View
 
 			double precoTotalIngredientes = 0;
 
-			// Limpar a lista de ingredientes selecionados
 			IngredientesSelecionados.Clear();
 
 			// Adicionar os ingredientes selecionados à lista

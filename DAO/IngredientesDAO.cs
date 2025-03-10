@@ -81,7 +81,8 @@ namespace Sistema_de_Lanchonete.DAO
 		{
 			try
 			{
-				string sql = @"DELETE FROM TB_INGREDIENTES WHERE ID = @ID";
+				string sql = @"UPDATE TB_INGREDIENTES SET ATIVO = 0
+								WHERE ID = @ID";
 
 				MySqlCommand executacmd = new MySqlCommand(sql, conexao);
 				executacmd.Parameters.AddWithValue("@ID", ingredientes.Id);
@@ -110,7 +111,7 @@ namespace Sistema_de_Lanchonete.DAO
 
 				DataTable tabelaIngrediente = new DataTable();
 
-				string sql = "SELECT * FROM TB_INGREDIENTES";
+				string sql = "SELECT * FROM TB_INGREDIENTES WHERE ATIVO = 1";
 
 				MySqlCommand executacmd = new MySqlCommand(sql, conexao);
 
@@ -140,7 +141,7 @@ namespace Sistema_de_Lanchonete.DAO
 			{
 				List<Ingredientes> listaIngredientes = new List<Ingredientes>();
 
-				string sql = "SELECT * FROM TB_INGREDIENTES";
+				string sql = "SELECT * FROM TB_INGREDIENTES WHERE ATIVO = 1";
 
 				MySqlCommand executacmd = new MySqlCommand(sql, conexao);
 
@@ -178,7 +179,7 @@ namespace Sistema_de_Lanchonete.DAO
 			try
 			{
 				DataTable tabelaingrediente = new DataTable();
-				string sql = "SELECT * FROM TB_INGREDIENTES WHERE NOME = @NOME";
+				string sql = "SELECT * FROM TB_INGREDIENTES WHERE NOME = @NOME AND ATIVO = 1";
 
 				MySqlCommand executacmd = new MySqlCommand(sql, conexao);
 				executacmd.Parameters.AddWithValue("@nome", nome);
@@ -209,7 +210,7 @@ namespace Sistema_de_Lanchonete.DAO
 			try
 			{
 				DataTable tabelaingrediente = new DataTable();
-				string sql = "SELECT * FROM TB_INGREDIENTES WHERE NOME LIKE @NOME";
+				string sql = "SELECT * FROM TB_INGREDIENTES WHERE NOME LIKE @NOME AND ATIVO = 1";
 
 				MySqlCommand executacmd = new MySqlCommand(sql, conexao);
 				executacmd.Parameters.AddWithValue("@nome", nome);
@@ -239,7 +240,7 @@ namespace Sistema_de_Lanchonete.DAO
 		public bool IngredienteExiste(Ingredientes ingredientes)
 		{
 			string sql = @"SELECT COUNT(*) FROM TB_INGREDIENTES
-								WHERE NOME = @NOME";
+								WHERE NOME = @NOME AND ATIVO = 1";
 
 			MySqlCommand executacmd = new MySqlCommand(sql, conexao);
 			executacmd.Parameters.AddWithValue("@NOME", ingredientes.Nome);

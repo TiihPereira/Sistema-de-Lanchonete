@@ -126,10 +126,13 @@ namespace Sistema_de_Lanchonete.DAO
 		{
 			try
 			{
-				string sql =  @"DELETE A,B FROM DBLANCHONETE.TB_LANCHES AS A
-								INNER JOIN DBLANCHONETE.TB_LANCHES_INGREDIENTES AS B
-								ON B.ID_LANCHE = A.ID
-								WHERE A.NOME = @NOME";
+				//string sql =  @"DELETE A,B FROM DBLANCHONETE.TB_LANCHES AS A
+				//				INNER JOIN DBLANCHONETE.TB_LANCHES_INGREDIENTES AS B
+				//				ON B.ID_LANCHE = A.ID
+				//				WHERE A.NOME = @NOME";
+
+				string sql = @"UPDATE TB_LANCHES SET ATIVO = 0
+								WHERE NOME = @NOME";
 
 				MySqlCommand executacmd = new MySqlCommand(sql, conexao);
 				executacmd.Parameters.AddWithValue("@NOME", lanches.Nome);
@@ -158,7 +161,7 @@ namespace Sistema_de_Lanchonete.DAO
 
 				DataTable tabelaLanches = new DataTable();
 
-				string sql = "SELECT * FROM TB_LANCHES";
+				string sql = "SELECT * FROM TB_LANCHES WHERE ATIVO = 1";
 
 				MySqlCommand executacmd = new MySqlCommand(sql, conexao);
 
@@ -211,7 +214,7 @@ namespace Sistema_de_Lanchonete.DAO
 
 			string sql = @"SELECT B.ID, B.NOME, B.PRECO FROM TB_LANCHES_INGREDIENTES A
 							INNER JOIN TB_INGREDIENTES B ON A.ID_INGREDIENTE = B.ID 
-								WHERE A.ID_LANCHE = @idLanche";
+								WHERE A.ID_LANCHE = @idLanche AND B.ATIVO = 1";
 
 			MySqlCommand executacmd = new MySqlCommand(sql, conexao);
 			executacmd.Parameters.AddWithValue("@idLanche", idLanche);
@@ -242,7 +245,7 @@ namespace Sistema_de_Lanchonete.DAO
 			try
 			{
 				DataTable tabelalanche = new DataTable();
-				string sql = "SELECT * FROM TB_LANCHES WHERE NOME = @NOME";
+				string sql = "SELECT * FROM TB_LANCHES WHERE NOME = @NOME AND ATIVO = 1";
 
 				MySqlCommand executacmd = new MySqlCommand(sql, conexao);
 				executacmd.Parameters.AddWithValue("@nome", nome);
@@ -273,7 +276,7 @@ namespace Sistema_de_Lanchonete.DAO
 			try
 			{
 				DataTable tabelalanche = new DataTable();
-				string sql = "SELECT * FROM TB_LANCHES WHERE NOME LIKE @NOME";
+				string sql = "SELECT * FROM TB_LANCHES WHERE NOME LIKE @NOME AND ATIVO = 1";
 
 				MySqlCommand executacmd = new MySqlCommand(sql, conexao);
 				executacmd.Parameters.AddWithValue("@nome", nome);
@@ -302,7 +305,7 @@ namespace Sistema_de_Lanchonete.DAO
 		{
 			List<Lanches> lista = new List<Lanches>();
 
-			string sql = "SELECT * FROM TB_LANCHES";
+			string sql = "SELECT * FROM TB_LANCHES WHERE ATIVO = 1";
 
 			MySqlCommand executacmd = new MySqlCommand(sql, conexao);
 			conexao.Open();
@@ -329,7 +332,7 @@ namespace Sistema_de_Lanchonete.DAO
 		public bool LancheExiste(Lanches lanches)
 		{
 			string sql = @"SELECT COUNT(*) FROM TB_LANCHES
-							WHERE NOME = @NOME";
+							WHERE NOME = @NOME AND ATIVO = 1";
 
 			MySqlCommand executacmd = new MySqlCommand(sql, conexao);
 			executacmd.Parameters.AddWithValue("@NOME", lanches.Nome);
@@ -343,7 +346,6 @@ namespace Sistema_de_Lanchonete.DAO
 			return count > 0;
 
 			#endregion
-
 		}
 	}
 }

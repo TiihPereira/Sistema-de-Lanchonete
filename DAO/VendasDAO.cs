@@ -22,7 +22,6 @@ namespace Sistema_de_Lanchonete.DAO
 		}
 
 		#region CadastrarVenda
-		//public bool CadastrarVenda(int idLanche, double valorTotal, DateTime dataVenda, List<int> ingredientes)
 		public bool CadastrarVenda(List<(int idLanche, string nomeLanche)> lanches, double valorTotal, DateTime dataVenda, List<(int idLanche, int idIngrediente)> ingredientes)
 		{
 			try
@@ -120,11 +119,11 @@ namespace Sistema_de_Lanchonete.DAO
 
 			try
 			{
-				string sql = @"SELECT L.NOME, COUNT(V.ID_LANCHE) AS QUANTIDADE 
-                                 FROM TB_VENDAS V
-                                 INNER JOIN TB_LANCHES L ON V.ID_LANCHE = L.ID
-                                 GROUP BY V.ID_LANCHE
-                                 ORDER BY QUANTIDADE DESC";
+				string sql = @"SELECT L.NOME, COUNT(VD.ID_LANCHE) AS QUANTIDADE
+								FROM TB_VENDAS_DETAIL VD
+								INNER JOIN TB_LANCHES L ON VD.ID_LANCHE = L.ID
+								GROUP BY VD.ID_LANCHE
+								ORDER BY QUANTIDADE DESC;";
 
 				MySqlCommand executacmd = new MySqlCommand(sql, conexao);
 				conexao.Open();
