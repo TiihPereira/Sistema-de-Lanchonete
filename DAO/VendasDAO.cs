@@ -21,11 +21,11 @@ namespace Sistema_de_Lanchonete.DAO
 			this.conexao = new ConnectionFactory().GetConnection();
 		}
 
+		#region CadastrarVenda
 		public bool CadastrarVenda(int idLanche, double valorTotal, DateTime dataVenda, List<int> ingredientes)
 		{
 			try
 			{
-				//INSERTS NA TABELA DE VENDAS
 				string sqlVenda = @"INSERT INTO TB_VENDAS (ID_LANCHE, VALOR_TOTAL, DATA_VENDA)
 					 VALUES (@IdLanche, @valorTotal, @DataVenda)";
 
@@ -39,7 +39,6 @@ namespace Sistema_de_Lanchonete.DAO
 
 				int idVenda = (int)cmdVenda.LastInsertedId;
 
-				//INSERTS NA TABELA DE VENDAS_DETAIL
 				string sqlDetails = @"INSERT INTO TB_VENDAS_DETAIL (ID_VENDA, ID_LANCHE, ID_INGREDIENTE)
 										VALUES (@idVenda, @idLanche, @idIngrediente)";
 
@@ -52,7 +51,6 @@ namespace Sistema_de_Lanchonete.DAO
 					cmdDetail.ExecuteNonQuery();
 				}
 
-				MessageBox.Show("Venda cadastrada com sucesso!");
 				conexao.Close();
 				return true;
 
@@ -63,14 +61,15 @@ namespace Sistema_de_Lanchonete.DAO
 				return false;
 			}
 		}
+		#endregion
 
+		#region BuscarVendasPorPeriodo
 		public DataTable BuscarVendasPorPeriodo(DateTime dataInicio, DateTime dataFim)
 		{
 			DataTable vendasDataTable = new DataTable();
 
 			try
 			{
-
 				string dataInicioFormatada = dataInicio.ToString("yyyy-MM-dd HH:mm:ss");
 				string dataFimFormatada = dataFim.Date.AddDays(1).AddMilliseconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
 
@@ -103,6 +102,9 @@ namespace Sistema_de_Lanchonete.DAO
 			return vendasDataTable;
 		}
 
+		#endregion
+
+		#region BuscarLancheMaisVendido
 		public List<Tuple<string, int>> BuscarLancheMaisVendido()
 		{
 
@@ -135,6 +137,9 @@ namespace Sistema_de_Lanchonete.DAO
 			return lanchesMaisVendidos;
 		}
 
+		#endregion
+
+		#region BuscarIngredientesMaisUtilizados
 		public List<Tuple<string, int>> BuscarIngredientesMaisUtilizados()
 		{
 			List<Tuple<string, int>> ingredientesMaisUtilizados = new List<Tuple<string, int>>();
@@ -164,5 +169,7 @@ namespace Sistema_de_Lanchonete.DAO
 			conexao.Close();
 			return ingredientesMaisUtilizados;
 		}
+
+		#endregion
 	}
 }

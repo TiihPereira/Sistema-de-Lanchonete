@@ -28,7 +28,6 @@ namespace Sistema_de_Lanchonete.DAO
 		{
 			try
 			{
-				// INSERT NA TABELA DE LANCHE
 				string sqlLanche = "INSERT INTO TB_LANCHES(NOME, PRECO) VALUES(@NOME, @PRECO)";
 
 				MySqlCommand cmdlanche = new MySqlCommand(sqlLanche, conexao);
@@ -40,7 +39,6 @@ namespace Sistema_de_Lanchonete.DAO
 
 				int lancheId = (int)cmdlanche.LastInsertedId;
 
-				// INSERT NA TABELA LANCHE/INGREDIENTE
 				string sqlLancheIngrediente = @"INSERT INTO TB_LANCHES_INGREDIENTES(ID_LANCHE, ID_INGREDIENTE)
 												VALUES(@ID_LANCHE, @ID_INGREDIENTE)";
 
@@ -184,6 +182,7 @@ namespace Sistema_de_Lanchonete.DAO
 
 		#endregion
 
+		#region BuscarIngredientesDoLanchePorId
 		public List<int> BuscarIngredientesDoLanchePorId(int idLanche)
 		{
 			List<int> ids = new List<int>();
@@ -203,7 +202,9 @@ namespace Sistema_de_Lanchonete.DAO
 
 			return ids;
 		}
+		#endregion
 
+		#region BuscarIngredientesDoLanche
 		public List<Ingredientes> BuscarIngredientesDoLanche(int idLanche)
 		{
 			List<Ingredientes> ingredientes = new List<Ingredientes>();
@@ -232,6 +233,7 @@ namespace Sistema_de_Lanchonete.DAO
 
 			return ingredientes;
 		}
+		#endregion
 
 		#region BuscarLanchePorNome
 
@@ -266,7 +268,6 @@ namespace Sistema_de_Lanchonete.DAO
 		#endregion
 
 		#region ListarLanchePorNome
-
 		public DataTable ListarLanchePorNome(string nome)
 		{
 			try
@@ -293,10 +294,10 @@ namespace Sistema_de_Lanchonete.DAO
 				MessageBox.Show("Erro ao executar o comando sql: " + erro);
 				return null;
 			}
-
-			#endregion
 		}
+		#endregion
 
+		#region BuscarTodosLanches
 		public List<Lanches> BuscarTodosLanches()
 		{
 			List<Lanches> lista = new List<Lanches>();
@@ -322,5 +323,27 @@ namespace Sistema_de_Lanchonete.DAO
 			return lista;
 		}
 
+		#endregion
+
+		#region LancheExiste
+		public bool LancheExiste(Lanches lanches)
+		{
+			string sql = @"SELECT COUNT(*) FROM TB_LANCHES
+							WHERE NOME = @NOME";
+
+			MySqlCommand executacmd = new MySqlCommand(sql, conexao);
+			executacmd.Parameters.AddWithValue("@NOME", lanches.Nome);
+
+			conexao.Open();
+			executacmd.ExecuteNonQuery();
+
+			int count = Convert.ToInt32(executacmd.ExecuteScalar());
+			conexao.Close();
+
+			return count > 0;
+
+			#endregion
+
+		}
 	}
 }

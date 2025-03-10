@@ -73,16 +73,6 @@ namespace Sistema_de_Lanchonete.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap backgroud1 {
-            get {
-                object obj = ResourceManager.GetObject("backgroud1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap cardapio_64px {
             get {
                 object obj = ResourceManager.GetObject("cardapio-64px", resourceCulture);
@@ -96,6 +86,26 @@ namespace Sistema_de_Lanchonete.Properties {
         internal static System.Drawing.Bitmap configuracoes_64px {
             get {
                 object obj = ResourceManager.GetObject("configuracoes-64px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap crossed_eye {
+            get {
+                object obj = ResourceManager.GetObject("crossed-eye", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap eye {
+            get {
+                object obj = ResourceManager.GetObject("eye", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

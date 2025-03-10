@@ -101,7 +101,7 @@ namespace Sistema_de_Lanchonete.DAO
 
 		#endregion
 
-		#region ListarIngredientes
+		#region ListarIngredientesDT
 
 		public DataTable ListarIngredientesDT()
 		{
@@ -131,7 +131,9 @@ namespace Sistema_de_Lanchonete.DAO
 				return null;
 			}
 		}
+		#endregion
 
+		#region ListarIngredientes
 		public List<Ingredientes> ListarIngredientes()
 		{
 			try

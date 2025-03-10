@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -37,6 +38,10 @@ namespace Sistema_de_Lanchonete.Model
 								}
 							}
 						}
+					}
+					else if (crt1 is ListView listView)
+					{
+						listView.Items.Clear();
 					}
 				}
 			}

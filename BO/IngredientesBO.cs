@@ -40,6 +40,17 @@ namespace Sistema_de_Lanchonete.BO
 				MessageBox.Show("Erro ao tentar alterar: " + error);
 			}
 		}
+		public void ExcluirIngredientes(Ingredientes ingredientes)
+		{
+			try
+			{
+				ingredientesDAO.ExcluirIngredientes(ingredientes);
+			}
+			catch (Exception error)
+			{
+				MessageBox.Show("Erro ao tentar excluir: " + error);
+			}
+		}
 
 		public DataTable ListarIngredientesDT()
 		{
@@ -67,18 +78,6 @@ namespace Sistema_de_Lanchonete.BO
 				return null;
 			}
 
-		}
-
-		public void ExcluirIngredientes(Ingredientes ingredientes)
-		{
-			try
-			{
-				ingredientesDAO.ExcluirIngredientes(ingredientes);
-			}
-			catch (Exception error)
-			{
-				MessageBox.Show("Erro ao tentar excluir: " + error);
-			}
 		}
 
 		public DataTable BuscarIngredientePorNome(string nome)

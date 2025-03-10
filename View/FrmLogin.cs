@@ -41,5 +41,19 @@ namespace Sistema_de_Lanchonete.View
 				btnentrar.PerformClick();
 			}
 		}
+
+		private void pbMostrarSenha_Click(object sender, EventArgs e)
+		{
+			if (txtsenha.PasswordChar == '*')
+			{
+				txtsenha.PasswordChar = '\0';
+				pbMostrarSenha.Image = Properties.Resources.crossed_eye;
+			}
+			else
+			{
+				txtsenha.PasswordChar = '*';
+				pbMostrarSenha.Image = Properties.Resources.eye;
+			}
+		}
 	}
 }

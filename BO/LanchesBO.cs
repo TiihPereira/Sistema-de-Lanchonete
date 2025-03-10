@@ -41,8 +41,7 @@ namespace Sistema_de_Lanchonete.BO
 			if (lanche.Ingredientes == null || lanche.Ingredientes.Count == 0)
 				throw new Exception("Selecione pelo menos um ingrediente.");
 
-			LanchesDAO service = new LanchesDAO();
-			service.AlterarLanches(lanche);
+			lanchesDAO.AlterarLanches(lanche);
 		}
 
 		public void ExcluirLanches(Lanches lanches)
@@ -143,5 +142,9 @@ namespace Sistema_de_Lanchonete.BO
 			return listaIngredientes;
 		}
 
+		public bool LancheExiste(Lanches lanches)
+		{
+			return lanchesDAO.LancheExiste(lanches);
+		}
 	}
 }

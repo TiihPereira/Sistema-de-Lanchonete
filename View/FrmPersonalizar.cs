@@ -57,14 +57,8 @@ namespace Sistema_de_Lanchonete.View
 				int firstHyphenIndex = valueTable.IndexOf('-');
 				int secondHyphenIndex = valueTable.IndexOf('-', firstHyphenIndex + 1);
 
-				if (secondHyphenIndex >= 0) // Verifica se o segundo "-" foi encontrado
+				if (secondHyphenIndex >= 0)
 				{
-					// Adiciona o ingrediente selecionado
-					//var ingrediente = new Ingredientes(
-					//	Convert.ToInt32(valueTable.Substring(0, firstHyphenIndex)),
-					//	valueTable.Substring(firstHyphenIndex + 1),
-					//	Convert.ToDouble(valueTable.Substring(secondHyphenIndex + 1).Trim())
-					//);
 
 					var id = Convert.ToInt32(valueTable.Substring(0, firstHyphenIndex).Trim());
 					var nome = valueTable.Substring(firstHyphenIndex + 1, secondHyphenIndex - firstHyphenIndex - 1).Trim();
@@ -76,17 +70,8 @@ namespace Sistema_de_Lanchonete.View
 
 					IngredientesSelecionados.Add(ingrediente);
 
-					// Somar o preço do ingrediente selecionado
 					precoTotalIngredientes += ingrediente.Preco;
 				}
-			}
-
-			// Atualiza o preço total do lanche com os ingredientes
-			if (IngredientesSelecionados.Any())
-			{
-				// Supondo que o lanche tenha um preço base (lanche.Preco) e que os ingredientes sejam somados ao preço total
-				// Adicionando o preço total dos ingredientes ao preço base do lanche
-				// O preço do lanche será recalculado após o usuário personalizar os ingredientes
 			}
 
 			DialogResult = DialogResult.OK;
@@ -101,7 +86,10 @@ namespace Sistema_de_Lanchonete.View
 		{
 			this.listBoxIngredientes = new CheckedListBox();
 			this.btnSalvar = new Button();
-		
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
+			this.FormBorderStyle = FormBorderStyle.FixedDialog;
+
 			// Configurações do CheckedListBox
 			this.listBoxIngredientes.CheckOnClick = true;
 			this.listBoxIngredientes.FormattingEnabled = true;

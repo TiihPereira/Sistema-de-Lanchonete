@@ -196,7 +196,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\backgroud1.jpg" />
+    <Folder Include="database\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\backgroud.jpg" />
@@ -206,6 +206,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\configuracoes-64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\crossed-eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ingredientes-64px1.png" />

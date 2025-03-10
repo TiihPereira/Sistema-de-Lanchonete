@@ -37,6 +37,7 @@
 			this.menuCadastroIngredientes = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuConsultaIngredientes = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuCardapio = new System.Windows.Forms.ToolStripMenuItem();
+			this.cardápioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuVendas = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuHistoricoVenda = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuConfiguracoes = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,7 +52,6 @@
 			this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.txtusuario = new System.Windows.Forms.ToolStripStatusLabel();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
-			this.cardápioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -66,7 +66,7 @@
             this.menuConfiguracoes});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(698, 72);
+			this.menuStrip1.Size = new System.Drawing.Size(714, 72);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -131,6 +131,13 @@
 			this.menuCardapio.Size = new System.Drawing.Size(131, 68);
 			this.menuCardapio.Text = "Cardápio";
 			// 
+			// cardápioToolStripMenuItem
+			// 
+			this.cardápioToolStripMenuItem.Name = "cardápioToolStripMenuItem";
+			this.cardápioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.cardápioToolStripMenuItem.Text = "Cardápio";
+			this.cardápioToolStripMenuItem.Click += new System.EventHandler(this.cardápioToolStripMenuItem_Click);
+			// 
 			// menuVendas
 			// 
 			this.menuVendas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -162,14 +169,14 @@
 			// menuTrocarUsuario
 			// 
 			this.menuTrocarUsuario.Name = "menuTrocarUsuario";
-			this.menuTrocarUsuario.Size = new System.Drawing.Size(165, 22);
+			this.menuTrocarUsuario.Size = new System.Drawing.Size(180, 22);
 			this.menuTrocarUsuario.Text = "Trocar de Usuário";
 			this.menuTrocarUsuario.Click += new System.EventHandler(this.menuTrocarUsuario_Click);
 			// 
 			// menuSair
 			// 
 			this.menuSair.Name = "menuSair";
-			this.menuSair.Size = new System.Drawing.Size(165, 22);
+			this.menuSair.Size = new System.Drawing.Size(180, 22);
 			this.menuSair.Text = "Sair";
 			this.menuSair.Click += new System.EventHandler(this.menuSair_Click);
 			// 
@@ -187,9 +194,9 @@
             this.txthora,
             this.toolStripStatusLabel5,
             this.txtusuario});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 664);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 589);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(698, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(714, 22);
 			this.statusStrip1.TabIndex = 2;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
@@ -237,26 +244,22 @@
 			this.timer1.Enabled = true;
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
-			// cardápioToolStripMenuItem
-			// 
-			this.cardápioToolStripMenuItem.Name = "cardápioToolStripMenuItem";
-			this.cardápioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.cardápioToolStripMenuItem.Text = "Cardápio";
-			this.cardápioToolStripMenuItem.Click += new System.EventHandler(this.cardápioToolStripMenuItem_Click);
-			// 
 			// FrmMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackgroundImage = global::Sistema_de_Lanchonete.Properties.Resources.backgroud1;
-			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.ClientSize = new System.Drawing.Size(698, 686);
+			this.BackgroundImage = global::Sistema_de_Lanchonete.Properties.Resources.backgroud;
+			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.ClientSize = new System.Drawing.Size(714, 611);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.menuStrip1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MainMenuStrip = this.menuStrip1;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "FrmMenu";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "FrmMenu1";
+			this.Text = "Menu - Bala Artesanais";
 			this.Load += new System.EventHandler(this.FrmMenu_Load);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();

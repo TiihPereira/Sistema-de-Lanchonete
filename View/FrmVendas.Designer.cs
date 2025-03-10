@@ -57,7 +57,7 @@
 			this.panelIngredientes.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panelIngredientes.Location = new System.Drawing.Point(0, 0);
 			this.panelIngredientes.Name = "panelIngredientes";
-			this.panelIngredientes.Size = new System.Drawing.Size(806, 74);
+			this.panelIngredientes.Size = new System.Drawing.Size(799, 74);
 			this.panelIngredientes.TabIndex = 1;
 			// 
 			// label1
@@ -188,14 +188,18 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(806, 620);
+			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.ClientSize = new System.Drawing.Size(799, 611);
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.panelIngredientes);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "FrmVendas";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "FrmVendas";
+			this.Text = "Histórico de Vendas";
 			this.Load += new System.EventHandler(this.FrmVendas_Load);
 			this.panelIngredientes.ResumeLayout(false);
 			this.panelIngredientes.PerformLayout();

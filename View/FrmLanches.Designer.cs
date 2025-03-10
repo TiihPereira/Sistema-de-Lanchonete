@@ -286,6 +286,9 @@ namespace Sistema_de_Lanchonete.View
 			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.Controls.Add(this.tabCadastroLanches);
 			this.Controls.Add(this.panelCadastroLanches);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "FrmLanches";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Cadastro de Lanches";

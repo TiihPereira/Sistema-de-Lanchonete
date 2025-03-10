@@ -102,6 +102,12 @@ namespace Sistema_de_Lanchonete.View
 				}
 				lanche.Preco = preco;
 
+				if (lanchesBO.LancheExiste(lanche))
+				{
+					MessageBox.Show("Esse lanche já esta cadastrado!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return;
+				}
+
 				foreach (DataGridViewRow row in dataGridIngredientes.Rows)
 				{
 					bool selecionado = Convert.ToBoolean(row.Cells["Selecionado"].Value);
@@ -153,7 +159,6 @@ namespace Sistema_de_Lanchonete.View
 				dataGridLanches.DataSource = lanchesBO.ListarLanches();
 			}
 
-			new Helpers().LimparTela(this);
 		}
 
 		private void FrmLanches_Load(object sender, EventArgs e)
@@ -172,6 +177,10 @@ namespace Sistema_de_Lanchonete.View
 
 		private void btneditar_Click(object sender, EventArgs e)
 		{
+
+			if (!ChecandoCampos())
+				return;
+
 			try
 			{
 				Lanches lanche = new Lanches
@@ -184,7 +193,6 @@ namespace Sistema_de_Lanchonete.View
 				LanchesBO bo = new LanchesBO();
 				bo.AlterarLanche(lanche);
 
-				MessageBox.Show("Lanche alterado com sucesso!");
 			}
 			catch (Exception error)
 			{

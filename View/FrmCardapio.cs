@@ -34,6 +34,9 @@ namespace Sistema_de_Lanchonete.View
 			this.Size = new Size(700, 600);
 			this.StartPosition = FormStartPosition.CenterScreen;
 			this.BackColor = Color.White;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
+			this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
 			Label titulo = new Label
 			{
@@ -64,13 +67,11 @@ namespace Sistema_de_Lanchonete.View
 			listCarrinho.Columns.Add("Lanche", 200);
 			listCarrinho.Columns.Add("Ingredientes", 350);
 			listCarrinho.Columns.Add("Preço", 100);
-			listCarrinho.Columns.Add("❌", 50); // Coluna para o botão de remover
 			listCarrinho.DoubleClick += PersonalizarLanche;
 
 			var menuContexto = new ContextMenuStrip();
 			menuContexto.Items.Add("❌ Remover", null, RemoverItemSelecionado);
 			listCarrinho.ContextMenuStrip = menuContexto;
-			listCarrinho.MouseClick += ListCarrinho_MouseClick;
 			listCarrinho.BorderStyle = BorderStyle.FixedSingle;
 			listCarrinho.HeaderStyle = ColumnHeaderStyle.Nonclickable;
 			listCarrinho.BackColor = Color.WhiteSmoke;
@@ -115,7 +116,7 @@ namespace Sistema_de_Lanchonete.View
 		{
 			Panel card = new Panel
 			{
-				Size = new Size(300, 100),
+				Size = new Size(290, 100),
 				BackColor = Color.WhiteSmoke,
 				Margin = new Padding(10)
 			};
@@ -238,29 +239,6 @@ namespace Sistema_de_Lanchonete.View
 			}
 		}
 
-		private void ListCarrinho_MouseClick(object sender, MouseEventArgs e)
-		{
-			var hit = listCarrinho.HitTest(e.Location);
-			int colunaClicada = hit.Item?.SubItems.IndexOf(hit.SubItem) ?? -1;
-
-			if (colunaClicada == 3) // Coluna do ❌
-			{
-				int index = listCarrinho.Items.IndexOf(hit.Item);
-				if (index >= 0)
-				{
-					var confirm = MessageBox.Show("Remover este item do carrinho?",
-												  "Confirmação",
-												  MessageBoxButtons.YesNo,
-												  MessageBoxIcon.Question);
-
-					if (confirm == DialogResult.Yes)
-					{
-						RemoverItemDoCarrinho(index);
-					}
-				}
-			}
-		}
-
 		private void RemoverItemDoCarrinho(int index)
 		{
 			if (index < 0 || index >= carrinho.Count)
@@ -330,20 +308,6 @@ namespace Sistema_de_Lanchonete.View
 		{
 			VendasBO vendasBO = new VendasBO();
 			List<Vendas> listaVendas = new List<Vendas>();
-			//
-			//foreach (var (lanche, ingredientes) in carrinho)
-			//{
-			//	foreach (var ingrediente in ingredientes)
-			//	{
-			//		double valorTotal = ingrediente.Preco;
-			//		Vendas venda = new Vendas(lanche.Id, ingrediente.Id, valorTotal);
-			//		listaVendas.Add(venda);
-			//	}
-			//}
-			//
-			//vendasBO.SalvarVendas(listaVendas);
-			//
-			//MessageBox.Show("Pedido salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 			try
 			{
@@ -381,7 +345,10 @@ namespace Sistema_de_Lanchonete.View
 			SalvarPedido();
 
 			MessageBox.Show($"Pedido finalizado!\nTotal: R$ {totalComDesconto:F2}", "Pedido Confirmado");
-			this.Close();
+
+			listCarrinho.Items.Clear();
+			carrinho.Clear();
+			lblTotal.Text = "Total: R$ 0,00";
 		}
 	}
 }

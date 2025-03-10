@@ -60,7 +60,7 @@
 			this.panelIngredientes.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panelIngredientes.Location = new System.Drawing.Point(0, 0);
 			this.panelIngredientes.Name = "panelIngredientes";
-			this.panelIngredientes.Size = new System.Drawing.Size(811, 100);
+			this.panelIngredientes.Size = new System.Drawing.Size(800, 100);
 			this.panelIngredientes.TabIndex = 0;
 			// 
 			// label1
@@ -254,9 +254,12 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(811, 458);
+			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.Controls.Add(this.tabCadastroIngredientes);
 			this.Controls.Add(this.panelIngredientes);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "FrmIngredientes";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Cadastro de Ingredientes";

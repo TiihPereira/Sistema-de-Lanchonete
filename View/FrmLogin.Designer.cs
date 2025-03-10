@@ -35,7 +35,9 @@
 			this.txtusuario = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.btnentrar = new System.Windows.Forms.Button();
+			this.pbMostrarSenha = new System.Windows.Forms.PictureBox();
 			this.panel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbMostrarSenha)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -112,22 +114,38 @@
 			this.btnentrar.UseVisualStyleBackColor = false;
 			this.btnentrar.Click += new System.EventHandler(this.btnentrar_Click);
 			// 
+			// pbMostrarSenha
+			// 
+			this.pbMostrarSenha.Image = global::Sistema_de_Lanchonete.Properties.Resources.eye;
+			this.pbMostrarSenha.Location = new System.Drawing.Point(404, 182);
+			this.pbMostrarSenha.Name = "pbMostrarSenha";
+			this.pbMostrarSenha.Size = new System.Drawing.Size(39, 25);
+			this.pbMostrarSenha.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pbMostrarSenha.TabIndex = 10;
+			this.pbMostrarSenha.TabStop = false;
+			this.pbMostrarSenha.Click += new System.EventHandler(this.pbMostrarSenha_Click);
+			// 
 			// FrmLogin
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(503, 293);
+			this.Controls.Add(this.pbMostrarSenha);
 			this.Controls.Add(this.btnentrar);
 			this.Controls.Add(this.txtsenha);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.txtusuario);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.panel1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "FrmLogin";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Login";
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbMostrarSenha)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -142,5 +160,6 @@
 		private System.Windows.Forms.TextBox txtusuario;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button btnentrar;
+		private System.Windows.Forms.PictureBox pbMostrarSenha;
 	}
 }
