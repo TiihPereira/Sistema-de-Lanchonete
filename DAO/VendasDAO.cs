@@ -119,10 +119,10 @@ namespace Sistema_de_Lanchonete.DAO
 
 			try
 			{
-				string sql = @"SELECT L.NOME, COUNT(VD.ID_LANCHE) AS QUANTIDADE
+				string sql = @"SELECT L.NOME, COUNT(DISTINCT VD.ID_VENDA) AS QUANTIDADE
 								FROM TB_VENDAS_DETAIL VD
 								INNER JOIN TB_LANCHES L ON VD.ID_LANCHE = L.ID
-								GROUP BY VD.ID_LANCHE
+								GROUP BY L.ID, L.NOME
 								ORDER BY QUANTIDADE DESC;";
 
 				MySqlCommand executacmd = new MySqlCommand(sql, conexao);
