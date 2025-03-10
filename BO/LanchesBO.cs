@@ -26,7 +26,7 @@ namespace Sistema_de_Lanchonete.BO
 			}
 			catch (Exception error)
 			{
-				MessageBox.Show("Erro ao tentar cadastrar: " + error);
+				MessageBox.Show("Erro ao tentar cadastrar: " + error.Message);
 			}
 		}
 
@@ -52,7 +52,7 @@ namespace Sistema_de_Lanchonete.BO
 			}
 			catch (Exception error)
 			{
-				MessageBox.Show("Erro ao tentar excluir: " + error);
+				MessageBox.Show("Erro ao tentar excluir: " + error.Message);
 			}
 		}
 
@@ -64,7 +64,7 @@ namespace Sistema_de_Lanchonete.BO
 			}
 			catch (Exception error)
 			{
-				MessageBox.Show("Erro ao tentar listar: " + error);
+				MessageBox.Show("Erro ao tentar listar: " + error.Message);
 				return null;
 			}		
 		}
@@ -77,7 +77,7 @@ namespace Sistema_de_Lanchonete.BO
 			}
 			catch (Exception error)
 			{
-				MessageBox.Show("Erro ao tentar buscar: " + error);
+				MessageBox.Show("Erro ao tentar buscar: " + error.Message);
 				return null;
 			}
 		}
@@ -91,7 +91,7 @@ namespace Sistema_de_Lanchonete.BO
 			}
 			catch (Exception error)
 			{
-				MessageBox.Show("Erro ao tentar listar: " + error);
+				MessageBox.Show("Erro ao tentar listar: " + error.Message);
 				return null;
 			}
 		}
@@ -104,7 +104,7 @@ namespace Sistema_de_Lanchonete.BO
 			}
 			catch (Exception error)
 			{
-				MessageBox.Show("Erro ao tentar buscar: " + error);
+				MessageBox.Show("Erro ao tentar buscar: " + error.Message);
 				return null;
 			}
 		}

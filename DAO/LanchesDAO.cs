@@ -55,7 +55,7 @@ namespace Sistema_de_Lanchonete.DAO
 			}
 			catch (Exception error)
 			{
-				MessageBox.Show("Erro ao tentar cadastrar: " + error);
+				MessageBox.Show("Erro ao tentar cadastrar: " + error.Message);
 			}
 
 			MessageBox.Show("Lanche cadastrado com sucesso!");
@@ -126,11 +126,6 @@ namespace Sistema_de_Lanchonete.DAO
 		{
 			try
 			{
-				//string sql =  @"DELETE A,B FROM DBLANCHONETE.TB_LANCHES AS A
-				//				INNER JOIN DBLANCHONETE.TB_LANCHES_INGREDIENTES AS B
-				//				ON B.ID_LANCHE = A.ID
-				//				WHERE A.NOME = @NOME";
-
 				string sql = @"UPDATE TB_LANCHES SET ATIVO = 0
 								WHERE NOME = @NOME";
 
@@ -146,7 +141,7 @@ namespace Sistema_de_Lanchonete.DAO
 			catch (Exception error)
 			{
 
-				MessageBox.Show("Erro ao tentar excluir: " + error);
+				MessageBox.Show("Erro ao tentar excluir: " + error.Message);
 			}
 		}
 
@@ -178,7 +173,7 @@ namespace Sistema_de_Lanchonete.DAO
 			catch (Exception error)
 			{
 
-				MessageBox.Show("Erro ao executar o comando sql: " + error);
+				MessageBox.Show("Erro ao executar o comando sql: " + error.Message);
 				return null;
 			}
 		}

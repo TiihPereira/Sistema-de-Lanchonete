@@ -10,6 +10,7 @@ namespace Sistema_de_Lanchonete.Model
 {
 	public class Helpers
 	{
+		#region LimparTela
 		public void LimparTela(Form tela)
 		{
 			foreach (Control crtPai in tela.Controls)
@@ -46,5 +47,7 @@ namespace Sistema_de_Lanchonete.Model
 				}
 			}
 		}
+
+		#endregion
 	}
 }

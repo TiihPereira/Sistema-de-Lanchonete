@@ -41,7 +41,7 @@ namespace Sistema_de_Lanchonete.DAO
 			catch (Exception error)
 			{
 
-				MessageBox.Show("Erro ao tentar cadastrar: " + error);
+				MessageBox.Show("Erro ao tentar cadastrar: " + error.Message);
 			}
 		}
 		#endregion
@@ -69,7 +69,7 @@ namespace Sistema_de_Lanchonete.DAO
 			catch (Exception error)
 			{
 
-				MessageBox.Show("Erro ao tentar alterar: " + error);
+				MessageBox.Show("Erro ao tentar alterar: " + error.Message);
 			}
 		}
 
@@ -96,7 +96,7 @@ namespace Sistema_de_Lanchonete.DAO
 			catch (Exception error)
 			{
 
-				MessageBox.Show("Erro ao tentar excluir: " + error);
+				MessageBox.Show("Erro ao tentar excluir: " + error.Message);
 			}
 		}
 
@@ -128,7 +128,7 @@ namespace Sistema_de_Lanchonete.DAO
 			catch (Exception error)
 			{
 
-				MessageBox.Show("Erro ao executar o comando sql: " + error);
+				MessageBox.Show("Erro ao executar o comando sql: " + error.Message);
 				return null;
 			}
 		}
@@ -165,7 +165,7 @@ namespace Sistema_de_Lanchonete.DAO
 			}
 			catch (Exception error)
 			{
-				MessageBox.Show("Erro ao executar o comando sql: " + error);
+				MessageBox.Show("Erro ao executar o comando sql: " + error.Message);
 				return null;
 			}
 		}
@@ -197,7 +197,7 @@ namespace Sistema_de_Lanchonete.DAO
 			catch (Exception erro)
 			{
 
-				MessageBox.Show("Erro ao executar o comando sql: " + erro);
+				MessageBox.Show("Erro ao executar o comando sql: " + erro.Message);
 				return null;
 			}
 		}
@@ -228,7 +228,7 @@ namespace Sistema_de_Lanchonete.DAO
 			catch (Exception erro)
 			{
 
-				MessageBox.Show("Erro ao executar o comando sql: " + erro);
+				MessageBox.Show("Erro ao executar o comando sql: " + erro.Message);
 				return null;
 			}
 		}

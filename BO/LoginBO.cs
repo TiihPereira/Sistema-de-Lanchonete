@@ -22,7 +22,7 @@ namespace Sistema_de_Lanchonete.BO
 			}
 			catch (Exception erro)
 			{
-				MessageBox.Show("Erro ao efetuar login: " + erro);
+				MessageBox.Show("Erro ao efetuar login: " + erro.Message);
 				return false;
 			}
 		}
