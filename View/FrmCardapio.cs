@@ -270,16 +270,79 @@ namespace Sistema_de_Lanchonete.View
 			}
 		}
 
-		private int ObterIDLancheSelecionado()
+		public List<string> ObterLanchesDoCarrinho()
 		{
-			if (listCarrinho.Items.Count == 0)
+			List<string> lanches = new List<string>();
+
+			// Percorre todos os itens no ListView e extrai os dados necessários
+			foreach (ListViewItem item in listCarrinho.Items)
 			{
-				throw new Exception("Nenhum lanche selecionado!");
+				string nomeLanche = item.SubItems[0].Text; // Supondo que o nome do lanche esteja na primeira coluna
+
+				// Adiciona o nome do lanche à lista
+				lanches.Add(nomeLanche);
 			}
 
-			var item = listCarrinho.Items[0];
-			var (lanche, _) = (Tuple<Lanches, List<Ingredientes>>)item.Tag;
-			return lanche.Id;
+			return lanches;
+		}
+
+
+
+
+		//private string ObterNomeLancheSelecionado()
+		//{
+		//	// Verifica se há itens selecionados no ListView
+		//	if (listCarrinho.Items.Count > 0)
+		//	{
+		//		// Cria uma lista para armazenar os nomes dos lanches
+		//		List<string> nomesLanches = new List<string>();
+		//
+		//		// Percorre todos os itens selecionados no ListView
+		//		foreach (ListViewItem item in listCarrinho.Items)
+		//		{
+		//			// Adiciona o nome do lanche (primeira coluna) na lista
+		//			nomesLanches.Add(item.SubItems[0].Text);
+		//		}
+		//
+		//		// Junta todos os nomes dos lanches com uma vírgula e retorna a string resultante
+		//		return string.Join(", ", nomesLanches);
+		//	}
+		//	else
+		//	{
+		//		// Caso nenhum item tenha sido selecionado
+		//		MessageBox.Show("Por favor, selecione ao menos um lanche.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//		throw new Exception("Nenhum lanche selecionado.");
+		//	}
+		//}
+
+		private List<int> ObterIDLanchesSelecionados()
+		{
+			//if (listCarrinho.Items.Count == 0)
+			//{
+			//	throw new Exception("Nenhum lanche selecionado!");
+			//}
+			//
+			//var item = listCarrinho.Items[0];
+			//var (lanche, _) = (Tuple<Lanches, List<Ingredientes>>)item.Tag;
+			//return lanche.Id;
+			List<int> idsLanches = new List<int>();
+
+			if (listCarrinho.Items.Count == 0)
+			{
+				throw new Exception("Nenhum lanche no carrinho!");
+			}
+
+			// Percorre todos os itens na ListView
+			foreach (ListViewItem item in listCarrinho.Items)
+			{
+				// Obtém o objeto associado a esse item (presumivelmente um Tuple<Lanches, List<Ingredientes>>)
+				var (lanche, _) = (Tuple<Lanches, List<Ingredientes>>)item.Tag;
+
+				// Adiciona o id do lanche à lista de IDs
+				idsLanches.Add(lanche.Id);
+			}
+
+			return idsLanches;
 		}
 
 		private double CalcularValorTotal()
@@ -304,19 +367,179 @@ namespace Sistema_de_Lanchonete.View
 			return ingredientes.Select(i => i.Id).ToList();
 		}
 
+		public string ObterNomeLanchePeloID(int idLanche)
+		{
+			LanchesBO lanchesBO = new LanchesBO();
+			// Exemplo: Você pode ter uma lista de lanches cadastrados ou fazer uma consulta ao banco
+			var lanche = lanchesBO.BuscarTodosLanches().FirstOrDefault(l => l.Id == idLanche);
+			return lanche?.Nome ?? string.Empty;  // Retorna o nome ou string vazia caso não encontre
+		}
+
 		public void SalvarPedido()
 		{
 			VendasBO vendasBO = new VendasBO();
-			List<Vendas> listaVendas = new List<Vendas>();
+			//List<Vendas> listaVendas = new List<Vendas>();
 
 			try
 			{
-				int idLanche = ObterIDLancheSelecionado();
-				double valorTotal = CalcularValorTotal();
-				DateTime dataVenda = DateTime.Now;
-				List<int> ingredientes = ObterIngredientesSelecionados();
+				//int idLanche = ObterIDLancheSelecionado();
+				//double valorTotal = CalcularValorTotal();
+				//DateTime dataVenda = DateTime.Now;
+				//List<int> ingredientesSelecionados = ObterIngredientesSelecionados();
+				//
+				//// Criar a lista de lanches com tuplas (idLanche, nomeLanche)
+				//string nomeLanche = ObterNomeLancheSelecionado();  // Método necessário para obter o nome do lanche selecionado
+				//List<(int idLanche, string nomeLanche)> lanches = new List<(int, string)>
+				//{
+				//	(idLanche, nomeLanche)
+				//};
+				//
+				//// Criar a lista de ingredientes com tuplas (idLanche, idIngrediente)
+				//List<(int idLanche, int idIngrediente)> ingredientes = new List<(int, int)>();
+				//foreach (var idIngrediente in ingredientesSelecionados)
+				//{
+				//	ingredientes.Add((idLanche, idIngrediente));
+				//}
 
-				bool sucesso = vendasBO.SalvarVendas(idLanche, valorTotal, dataVenda, ingredientes);
+				// Obter a lista de lanches selecionados (supondo que você tenha uma lista de lanches no carrinho)
+				//List<string> nomeLanche = ObterLanchesDoCarrinho();
+				//
+				//// Calcular o valor total da venda
+				//double valorTotal = CalcularValorTotal();
+				//
+				//// Obter a data da venda
+				//DateTime dataVenda = DateTime.Now;
+				//
+				//// Obter os ingredientes selecionados
+				//List<int> ingredientesSelecionados = ObterIngredientesSelecionados();
+				//
+				//// Criar a lista de ingredientes com tuplas (idLanche, idIngrediente)
+				//List<(int idLanche, int idIngrediente)> ingredientes = new List<(int, int)>();
+				//foreach (var idIngrediente in ingredientesSelecionados)
+				//{
+				//	foreach (var lanche in lanches)
+				//	{
+				//		ingredientes.Add((lanche.idLanche, idIngrediente));
+				//	}
+				//}
+				//
+				//bool sucesso = vendasBO.SalvarVendas(lanches, valorTotal, dataVenda, ingredientes);
+
+				// Obter os nomes dos lanches do carrinho
+				//string nomesLanches = string.Join(", ", ObterLanchesDoCarrinho());
+				//
+				//// Calcular o valor total da venda
+				//double valorTotal = CalcularValorTotal();
+				//
+				//// Obter a data da venda
+				//DateTime dataVenda = DateTime.Now;
+				//
+				//// Obter os ingredientes selecionados
+				//List<int> ingredientesSelecionados = ObterIngredientesSelecionados();
+				//
+				//// Criar a lista de lanches com tuplas (idLanche, nomeLanche)
+				//List<(int idLanche, string nomeLanche)> lanches = new List<(int, string)>();
+				//
+				//// A partir dos nomes dos lanches, preenchemos a lista de lanches com os respectivos IDs
+				//foreach (string nomeLanche in ObterLanchesDoCarrinho())
+				//{
+				//	// Aqui, você deve buscar o ID do lanche a partir do nome do lanche (exemplo de consulta fictícia)
+				//	int idLanche = ObterIDLancheSelecionado();  // Supondo que você tenha esse método
+				//
+				//	lanches.Add((idLanche, nomeLanche));  // Adiciona à lista de lanches
+				//}
+				//
+				//// Criar a lista de ingredientes com tuplas (idLanche, idIngrediente)
+				//List<(int idLanche, int idIngrediente)> ingredientes = new List<(int, int)>();
+				//foreach (var idIngrediente in ingredientesSelecionados)
+				//{
+				//	foreach (var lanche in lanches)
+				//	{
+				//		ingredientes.Add((lanche.idLanche, idIngrediente));
+				//	}
+				//}
+				//
+				//// Salvar a venda
+				//bool sucesso = vendasBO.SalvarVendas(lanches, valorTotal, dataVenda, ingredientes);
+
+				//// Obter os nomes dos lanches do carrinho como uma string, separados por vírgula
+				//List<string> nomesLanches = ObterLanchesDoCarrinho();
+				//
+				//// Calcular o valor total da venda
+				//double valorTotal = CalcularValorTotal();
+				//
+				//// Obter a data da venda
+				//DateTime dataVenda = DateTime.Now;
+				//
+				//// Obter os ingredientes selecionados
+				//List<int> ingredientesSelecionados = ObterIngredientesSelecionados();
+				//
+				//// Criar a lista de lanches com tuplas (idLanche, nomeLanche)
+				//List<(int idLanche, string nomeLanche)> lanches = new List<(int, string)>();
+				//
+				//// A partir dos nomes dos lanches, preenchemos a lista de lanches com os respectivos IDs
+				//foreach (string nomeLanche in nomesLanches)
+				//{
+				//	// Aqui, você deve buscar o ID do lanche a partir do nome do lanche (exemplo de consulta fictícia)
+				//	int idLanche = ObterIDLanchePeloNome(nomeLanche);  // Supondo que você tenha esse método
+				//
+				//	// Adiciona o lanche à lista de lanches
+				//	lanches.Add((idLanche, nomeLanche));
+				//}
+				//
+				//// Criar a lista de ingredientes com tuplas (idLanche, idIngrediente)
+				//List<(int idLanche, int idIngrediente)> ingredientes = new List<(int, int)>();
+				//
+				//// Para cada ingrediente selecionado, associa com todos os lanches do carrinho
+				//foreach (var idIngrediente in ingredientesSelecionados)
+				//{
+				//	foreach (var lanche in lanches)
+				//	{
+				//		ingredientes.Add((lanche.idLanche, idIngrediente));
+				//	}
+				//}
+				//
+				//// Salvar a venda
+				//bool sucesso = vendasBO.SalvarVendas(lanches, valorTotal, dataVenda, ingredientes);
+
+				List<string> nomesLanches = ObterLanchesDoCarrinho();
+
+				// Calcular o valor total da venda
+				double valorTotal = CalcularValorTotal();
+
+				// Obter a data da venda
+				DateTime dataVenda = DateTime.Now;
+
+				// Obter os ingredientes selecionados
+				List<int> ingredientesSelecionados = ObterIngredientesSelecionados();
+
+				// Criar a lista de lanches com tuplas (idLanche, nomeLanche)
+				List<(int idLanche, string nomeLanche)> lanches = new List<(int, string)>();
+
+				// Obter todos os IDs dos lanches selecionados
+				List<int> idsLanches = ObterIDLanchesSelecionados();
+
+				// Preencher a lista de lanches com os nomes e IDs
+				foreach (var idLanche in idsLanches)
+				{
+					string nomeLanche = nomesLanches.FirstOrDefault(n => n.Equals(ObterNomeLanchePeloID(idLanche)));  // Supomos que você tem um método para buscar pelo idLanche
+					lanches.Add((idLanche, nomeLanche));
+				}
+
+				// Criar a lista de ingredientes com tuplas (idLanche, idIngrediente)
+				List<(int idLanche, int idIngrediente)> ingredientes = new List<(int, int)>();
+
+				// Para cada ingrediente selecionado, associamos com todos os lanches do carrinho
+				foreach (var idIngrediente in ingredientesSelecionados)
+				{
+					foreach (var lanche in lanches)
+					{
+						ingredientes.Add((lanche.idLanche, idIngrediente));
+					}
+				}
+
+				// Salvar a venda
+				bool sucesso = vendasBO.SalvarVendas(lanches, valorTotal, dataVenda, ingredientes);
 
 				if (sucesso)
 				{

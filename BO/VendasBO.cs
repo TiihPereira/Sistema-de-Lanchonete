@@ -14,9 +14,9 @@ namespace Sistema_de_Lanchonete.BO
 	{
 		private VendasDAO vendasDAO = new VendasDAO();
 
-		public bool SalvarVendas(int idLanche, double valorTotal, DateTime dataVenda, List<int> ingredientes)
+		public bool SalvarVendas(List<(int idLanche, string nomeLanche)> lanches, double valorTotal, DateTime dataVenda, List<(int idLanche, int idIngrediente)> ingredientes)
 		{
-			return vendasDAO.CadastrarVenda(idLanche, valorTotal, dataVenda, ingredientes);
+			return vendasDAO.CadastrarVenda(lanches, valorTotal, dataVenda, ingredientes);
 		}
 
 		public DataTable BuscarVendasPorPeriodo(DateTime dataInicio, DateTime dataFim)

@@ -22,15 +22,18 @@ namespace Sistema_de_Lanchonete.DAO
 		}
 
 		#region CadastrarVenda
-		public bool CadastrarVenda(int idLanche, double valorTotal, DateTime dataVenda, List<int> ingredientes)
+		//public bool CadastrarVenda(int idLanche, double valorTotal, DateTime dataVenda, List<int> ingredientes)
+		public bool CadastrarVenda(List<(int idLanche, string nomeLanche)> lanches, double valorTotal, DateTime dataVenda, List<(int idLanche, int idIngrediente)> ingredientes)
 		{
 			try
 			{
-				string sqlVenda = @"INSERT INTO TB_VENDAS (ID_LANCHE, VALOR_TOTAL, DATA_VENDA)
-					 VALUES (@IdLanche, @valorTotal, @DataVenda)";
+				string nomeLanches = string.Join(", ", lanches.Select(l => l.nomeLanche));
+
+				string sqlVenda = @"INSERT INTO TB_VENDAS (NOME, VALOR_TOTAL, DATA_VENDA)
+					 VALUES (@Nome, @valorTotal, @DataVenda)";
 
 				MySqlCommand cmdVenda = new MySqlCommand(sqlVenda, conexao);
-				cmdVenda.Parameters.AddWithValue("@IdLanche", idLanche);
+				cmdVenda.Parameters.AddWithValue("@Nome", nomeLanches);
 				cmdVenda.Parameters.AddWithValue("@valorTotal", valorTotal);
 				cmdVenda.Parameters.AddWithValue("@DataVenda", dataVenda);
 
@@ -41,14 +44,20 @@ namespace Sistema_de_Lanchonete.DAO
 
 				string sqlDetails = @"INSERT INTO TB_VENDAS_DETAIL (ID_VENDA, ID_LANCHE, ID_INGREDIENTE)
 										VALUES (@idVenda, @idLanche, @idIngrediente)";
-
-				foreach (var idIngrediente in ingredientes)
+				
+				foreach (var lanche in lanches)
 				{
-					MySqlCommand cmdDetail = new MySqlCommand(sqlDetails, conexao);
-					cmdDetail.Parameters.AddWithValue("@idVenda", idVenda);
-					cmdDetail.Parameters.AddWithValue("@idLanche", idLanche);
-					cmdDetail.Parameters.AddWithValue("@idIngrediente", idIngrediente);
-					cmdDetail.ExecuteNonQuery();
+
+					var ingredientesDoLanche = ingredientes.Where(i => i.idLanche == lanche.idLanche).ToList();
+
+					foreach (var ingrediente in ingredientesDoLanche)
+					{
+						MySqlCommand cmdDetail = new MySqlCommand(sqlDetails, conexao);
+						cmdDetail.Parameters.AddWithValue("@idVenda", idVenda);
+						cmdDetail.Parameters.AddWithValue("@idLanche", lanche.idLanche);
+						cmdDetail.Parameters.AddWithValue("@idIngrediente", ingrediente.idIngrediente);
+						cmdDetail.ExecuteNonQuery();
+					}
 				}
 
 				conexao.Close();
@@ -73,9 +82,8 @@ namespace Sistema_de_Lanchonete.DAO
 				string dataInicioFormatada = dataInicio.ToString("yyyy-MM-dd HH:mm:ss");
 				string dataFimFormatada = dataFim.Date.AddDays(1).AddMilliseconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
 
-				string sql = @"SELECT L.NOME, V.VALOR_TOTAL, V.DATA_VENDA
+				string sql = @"SELECT V.NOME, V.VALOR_TOTAL, V.DATA_VENDA
 								FROM TB_VENDAS V
-								INNER JOIN TB_LANCHES L ON V.ID_LANCHE = L.ID
 								WHERE DATA_VENDA
 								BETWEEN @DataInicio AND @DataFim
 								ORDER BY V.DATA_VENDA DESC";
